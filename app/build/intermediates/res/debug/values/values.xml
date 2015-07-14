@@ -26,7 +26,7 @@
     <string name="search_progress">Searching ...</string>
     <string name="searching_for_bridges">Searching for Bridges</string>
     <string name="title_error">Error</string>
-    <string name="txt_click_random_button">Click the Random Lights Button to set your lamps to random colours.</string>
+    <string name="txt_click_random_button">Insert that, you wnat change the color</string>
     <string name="txt_could_not_connect">No connection</string>
     <string name="txt_last_heartbeat">Last Heartbeat : </string>
     <string name="txt_pushlink">Pushlink</string>

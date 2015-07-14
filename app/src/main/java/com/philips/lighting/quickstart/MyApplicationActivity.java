@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
 
 import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
@@ -27,10 +28,25 @@ import java.util.Map;
  * @author SteveyO
  *
  */
+
 public class MyApplicationActivity extends Activity {
     private PHHueSDK phHueSDK;
     private static final int MAX_HUE=65535;
     public static final String TAG = "QuickStart";
+
+    private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
+        public void onStopTrackingTouch(SeekBar seekBar)
+        {
+        }
+        public void onStartTrackingTouch(SeekBar seekBar)
+        {
+        }
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
+        {
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,14 +77,16 @@ public class MyApplicationActivity extends Activity {
 
     public void setLights() {
         EditText textHue;
-        EditText textBri;
         EditText textSat;
         EditText textId;
+        SeekBar seekBri;
 
-        textHue = (EditText) findViewById(R.id.edit_hue);
-        textBri = (EditText) findViewById(R.id.edit_bri);
-        textSat = (EditText) findViewById(R.id.edit_sat);
         textId = (EditText) findViewById(R.id.edit_Id);
+        textHue = (EditText) findViewById(R.id.edit_hue);
+        textSat = (EditText) findViewById(R.id.edit_sat);
+        seekBri = (SeekBar) findViewById(R.id.bri_seekBar);
+
+
 
         PHBridge bridge = phHueSDK.getSelectedBridge();
 
@@ -77,7 +95,7 @@ public class MyApplicationActivity extends Activity {
 
             PHLightState lightState = new PHLightState();
             lightState.setHue(Integer.parseInt(textHue.getText().toString()));
-            lightState.setBrightness(Integer.parseInt(textBri.getText().toString()));
+            lightState.setBrightness(seekBri.getProgress());
             lightState.setSaturation(Integer.parseInt(textSat.getText().toString()));
             // To validate your lightstate is valid (before sending to the bridge) you can use:  
             // String validState = lightState.validateState();
