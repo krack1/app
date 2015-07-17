@@ -21,23 +21,24 @@ public final class R {
         public static final int pushlink_image=0x7f020003;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f08000e;
-        public static final int back_start=0x7f080016;
+        public static final int LinearLayout1=0x7f08000f;
+        public static final int back_start=0x7f080017;
         public static final int bri_seekBar=0x7f08000a;
-        public static final int bridge_ip=0x7f080013;
-        public static final int bridge_list=0x7f08000c;
-        public static final int bridge_mac=0x7f080012;
+        public static final int bridge_ip=0x7f080014;
+        public static final int bridge_list=0x7f08000d;
+        public static final int bridge_mac=0x7f080013;
         public static final int buttonRand=0x7f080002;
-        public static final int countdownPB=0x7f080011;
-        public static final int descriptionTextview=0x7f08000f;
+        public static final int countdownPB=0x7f080012;
+        public static final int descriptionTextview=0x7f080010;
         public static final int edit_Id=0x7f080009;
-        public static final int empty_list_view=0x7f08000d;
-        public static final int find_new_bridge=0x7f080015;
+        public static final int empty_list_view=0x7f08000e;
+        public static final int find_new_bridge=0x7f080016;
         public static final int hue_seekBar=0x7f080007;
-        public static final int imageView1=0x7f080010;
-        public static final int linear1=0x7f08000b;
+        public static final int imageView1=0x7f080011;
+        public static final int linear1=0x7f08000c;
         public static final int main_Relation=0x7f080000;
-        public static final int refresh=0x7f080014;
+        public static final int refresh=0x7f080015;
+        public static final int result=0x7f08000b;
         public static final int sat_seekBar=0x7f080005;
         public static final int textId=0x7f080008;
         public static final int textView=0x7f080004;

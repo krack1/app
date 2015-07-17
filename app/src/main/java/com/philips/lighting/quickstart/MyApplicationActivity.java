@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
@@ -96,12 +97,14 @@ public class MyApplicationActivity extends Activity {
         EditText textId;
         SeekBar seekBri;
         RelativeLayout m_RelativeLaout;
+        TextView hsb_result;
 
         textId = (EditText) findViewById(R.id.edit_Id);
         seekHue = (SeekBar) findViewById(R.id.hue_seekBar);
         seekSat = (SeekBar) findViewById(R.id.sat_seekBar);
         seekBri = (SeekBar) findViewById(R.id.bri_seekBar);
         m_RelativeLaout = (RelativeLayout) findViewById(R.id.main_Relation);
+        hsb_result = (TextView) findViewById(R.id.result);
 
         PHBridge bridge = phHueSDK.getSelectedBridge();
 
@@ -110,7 +113,12 @@ public class MyApplicationActivity extends Activity {
         h = seekHue.getProgress();
         s = seekSat.getProgress();
         b = seekBri.getProgress();
+
+        hsb_result.append("h : " + h+" s : "+ s + "b : " + b);
+
+        lightState.setOn(true);
         huetorgb(h, s, b);
+
 
         m_RelativeLaout.setBackgroundColor(Color.argb(255, m_red, m_green, m_blue));
 
@@ -118,10 +126,19 @@ public class MyApplicationActivity extends Activity {
         lightState.setHue(seekHue.getProgress());
         lightState.setBrightness(seekBri.getProgress());
         lightState.setSaturation(seekSat.getProgress());
+
         // To validate your lightstate is valid (before sending to the bridge) you can use:
         // String validState = lightState.validateState();
-        bridge.updateLightState(light, lightState, listener);
-        //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.
+        if(b == 0) {
+            lightState.setOn(false);
+        }
+        else {
+            lightState.setOn(true);
+        }
+            bridge.updateLightState(light, lightState, listener);
+
+            //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.
+
 
     }
     // If you want to handle the response from the bridge, create a PHLightListener object.
