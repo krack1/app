@@ -54,6 +54,8 @@ hue 0~360도(각도이다.) saturation 0~100%, blightness 0~100%로 제어
 
 hue: green: 120도, blue: 240도
 
+![HSB !](3219315_1279195852.jpg)
+
 RGB 
 
 RED 0~255, GREEN 0~255, BLUE 0~255
