@@ -1,7 +1,5 @@
 package com.philips.lighting.quickstart;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
@@ -24,6 +22,8 @@ import com.philips.lighting.hue.sdk.PHSDKListener;
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHHueError;
 import com.philips.lighting.model.PHHueParsingError;
+
+import java.util.List;
 
 /**
  * PHHomeActivity - The starting point in your own Hue App.

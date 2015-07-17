@@ -19,6 +19,7 @@
     <string name="connecting">Connecting ...</string>
     <string name="could_not_find_bridge">Hue cannot find your bridge. Please check that it is connected to the same Wi-Fi router as your app and press</string>
     <string name="enter_light_name">Enter light name</string>
+    <string name="first_page">처음으로</string>
     <string name="menu_find_bridge">브릿지 찾기</string>
     <string name="menu_refresh">갱신</string>
     <string name="no_bridge">No Bridge Found.   Start Bridge Search</string>
