@@ -16,7 +16,7 @@
         android:text="@string/txt_click_random_button" />
 
     <Button
-        android:id="@+id/buttonRand"
+        android:id="@+id/buttonSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_random" android:paddingLeft="10dp" android:paddingRight="10dp"

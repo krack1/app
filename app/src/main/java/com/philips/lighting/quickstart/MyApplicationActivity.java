@@ -63,7 +63,7 @@ public class MyApplicationActivity extends Activity {
         setContentView(R.layout.activity_main);
         phHueSDK = PHHueSDK.create();
         Button randomButton;
-        randomButton = (Button) findViewById(R.id.buttonRand);
+        randomButton = (Button) findViewById(R.id.buttonSend);
         randomButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
