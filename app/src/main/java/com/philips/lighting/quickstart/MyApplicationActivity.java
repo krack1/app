@@ -67,7 +67,7 @@ public class MyApplicationActivity extends Activity {
         randomButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                setLights();
+                startMainActivity();
             }
 
         });
@@ -181,7 +181,7 @@ public class MyApplicationActivity extends Activity {
     }
 
     public void startMainActivity() {
-        Intent intent = new Intent(getApplicationContext(), PHHomeActivity.class);
+        Intent intent = new Intent(getApplicationContext(), CallCatcherActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)

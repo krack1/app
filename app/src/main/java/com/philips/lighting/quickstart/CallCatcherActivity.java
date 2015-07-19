@@ -24,10 +24,10 @@ public class CallCatcherActivity extends Activity {
 
         phHueSDK = PHHueSDK.create();
 
-        String light = "1";
+        String light = "3";
         int seekHue = 35000;
-        int seekBri = 254;
-        int seekSat = 254;
+        int seekBri = 250;
+        int seekSat = 250;
 
         PHBridge bridge = phHueSDK.getSelectedBridge();
 
