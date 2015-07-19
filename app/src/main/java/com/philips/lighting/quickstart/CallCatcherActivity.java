@@ -2,14 +2,15 @@ package com.philips.lighting.quickstart;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
-
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Toast;
+import android.widget.ListView;
 
 import com.philips.lighting.data.AccessPointListAdapter;
 import com.philips.lighting.data.HueSharedPreferences;
@@ -29,40 +30,55 @@ import com.philips.lighting.model.PHLightState;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * PHHomeActivity - The starting point in your own Hue App.
+ *
+ * For first time use, a Bridge search (UPNP) is performed and a list of all available bridges is displayed (and clicking one of them shows the PushLink dialog allowing authentication).
+ * The last connected Bridge IP Address and Username are stored in SharedPreferences.
+ *
+ * For subsequent usage the app automatically connects to the last connected bridge.
+ * When connected the MyApplicationActivity Activity is started.  This is where you should start implementing your Hue App!  Have fun!
+ *
+ * For explanation on key concepts visit: https://github.com/PhilipsHue/PhilipsHueSDK-Java-MultiPlatform-Android
+ *
+ *
+ */
 public class CallCatcherActivity extends Activity implements OnItemClickListener {
+
     private PHHueSDK phHueSDK;
     public static final String TAG = "QuickStart";
     private HueSharedPreferences prefs;
     private AccessPointListAdapter adapter;
 
     private boolean lastSearchWasIPScan = false;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        phHueSDK = PHHueSDK.create();
 
-        Toast.makeText(getApplicationContext(), "토스트메시지입니다.", Toast.LENGTH_SHORT).show();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.bridgelistlinear);
+
+        // Gets an instance of the Hue SDK.
+        phHueSDK = PHHueSDK.create();
 
         // Set the Device Name (name of your app). This will be stored in your bridge whitelist entry.
         phHueSDK.setAppName("QuickStartApp");
         phHueSDK.setDeviceName(android.os.Build.MODEL);
 
-        phHueSDK.getNotificationManager().registerSDKListener(listener_b);
+        // Register the PHSDKListener to receive callbacks from the bridge.
+        phHueSDK.getNotificationManager().registerSDKListener(listener);
 
         adapter = new AccessPointListAdapter(getApplicationContext(), phHueSDK.getAccessPointsFound());
-
-
 
         ListView accessPointList = (ListView) findViewById(R.id.bridge_list);
         accessPointList.setOnItemClickListener(this);
         accessPointList.setAdapter(adapter);
 
+        // Try to automatically connect to the last known bridge.  For first time use this will be empty so a bridge search is automatically started.
         prefs = HueSharedPreferences.getInstance(getApplicationContext());
-
         String lastIpAddress   = prefs.getLastConnectedIPAddress();
         String lastUsername    = prefs.getUsername();
 
+        // Automatically try to connect to the last connected IP Address.  For multiple bridge support a different implementation is required.
         if (lastIpAddress !=null && !lastIpAddress.equals("")) {
             PHAccessPoint lastAccessPoint = new PHAccessPoint();
             lastAccessPoint.setIpAddress(lastIpAddress);
@@ -78,28 +94,17 @@ public class CallCatcherActivity extends Activity implements OnItemClickListener
         }
     }
 
-    public void setLights() {
-
-        PHBridge bridge = phHueSDK.getSelectedBridge();
-
-        PHLightState lightState = new PHLightState();
-
-        String light = "3";
-        lightState.setHue(35000);
-        lightState.setBrightness(200);
-        lightState.setSaturation(200);
-
-        // To validate your lightstate is valid (before sending to the bridge) you can use:
-        // String validState = lightState.validateState();
-
-        bridge.updateLightState(light, lightState, listener);
-
-        //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        Log.w(TAG, "Inflating home menu");
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.home, menu);
+        return true;
     }
 
 
-    private PHSDKListener listener_b = new PHSDKListener() {
+    // Local SDK Listener
+    private PHSDKListener listener = new PHSDKListener() {
 
         @Override
         public void onAccessPointsFound(List<PHAccessPoint> accessPoint) {
@@ -131,12 +136,11 @@ public class CallCatcherActivity extends Activity implements OnItemClickListener
         public void onBridgeConnected(PHBridge b) {
             phHueSDK.setSelectedBridge(b);
             phHueSDK.enableHeartbeat(b, PHHueSDK.HB_INTERVAL);
-            phHueSDK.getLastHeartbeat().put(b.getResourceCache().getBridgeConfiguration().getIpAddress(), System.currentTimeMillis());
+            phHueSDK.getLastHeartbeat().put(b.getResourceCache().getBridgeConfiguration() .getIpAddress(), System.currentTimeMillis());
             prefs.setLastConnectedIPAddress(b.getResourceCache().getBridgeConfiguration().getIpAddress());
             prefs.setUsername(prefs.getUsername());
             PHWizardAlertDialog.getInstance().closeProgressDialog();
-            setLights();
-
+            startMainActivity();
         }
 
         @Override
@@ -222,31 +226,33 @@ public class CallCatcherActivity extends Activity implements OnItemClickListener
         }
     };
 
-
-    PHLightListener listener = new PHLightListener() {
-
-        @Override
-        public void onSuccess() {
+    /**
+     * Called when option is selected.
+     *
+     * @param item the MenuItem object.
+     * @return boolean Return false to allow normal menu processing to proceed,  true to consume it here.
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.find_new_bridge:
+                doBridgeSearch();
+                break;
         }
+        return true;
+    }
 
-        @Override
-        public void onStateUpdate(Map<String, String> arg0, List<PHHueError> arg1) {
-            Log.w(TAG, "Light has updated");
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (listener !=null) {
+            phHueSDK.getNotificationManager().unregisterSDKListener(listener);
         }
+        phHueSDK.disableAllHeartbeat();
+    }
 
-        @Override
-        public void onError(int arg0, String arg1) {}
-
-        @Override
-        public void onReceivingLightDetails(PHLight arg0) {}
-
-        @Override
-        public void onReceivingLights(List<PHBridgeResource> arg0) {}
-
-        @Override
-        public void onSearchComplete() {}
-    };
-
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         HueSharedPreferences prefs = HueSharedPreferences.getInstance(getApplicationContext());
@@ -272,5 +278,58 @@ public class CallCatcherActivity extends Activity implements OnItemClickListener
         // Start the UPNP Searching of local bridges.
         sm.search(true, true);
     }
+
+    // Starting the main activity this way, prevents the PushLink Activity being shown when pressing the back button.
+    public void startMainActivity() {
+        Intent intent = new Intent(getApplicationContext(), MyApplicationActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+            intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
+        startActivity(intent);
+    }
+
+    public void setLights() {
+
+        PHBridge bridge = phHueSDK.getSelectedBridge();
+
+        PHLightState lightState = new PHLightState();
+
+        String light = "3";
+        lightState.setHue(35000);
+        lightState.setBrightness(200);
+        lightState.setSaturation(200);
+
+        // To validate your lightstate is valid (before sending to the bridge) you can use:
+        // String validState = lightState.validateState();
+
+        bridge.updateLightState(light, lightState, listener_a);
+
+        //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.
+    }
+
+    PHLightListener listener_a = new PHLightListener() {
+
+        @Override
+        public void onSuccess() {
+        }
+
+        @Override
+        public void onStateUpdate(Map<String, String> arg0, List<PHHueError> arg1) {
+            Log.w(TAG, "Light has updated");
+        }
+
+        @Override
+        public void onError(int arg0, String arg1) {}
+
+        @Override
+        public void onReceivingLightDetails(PHLight arg0) {}
+
+        @Override
+        public void onReceivingLights(List<PHBridgeResource> arg0) {}
+
+        @Override
+        public void onSearchComplete() {}
+    };
 
 }
