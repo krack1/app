@@ -7,11 +7,12 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -34,15 +35,18 @@
 	    <activity
 	         android:name="com.philips.lighting.quickstart.PHPushlinkActivity"
 	         android:label="@string/app_name" >
-	     </activity>        
+	     </activity>
+
+        <receiver android:name=".ServiceReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+
         
     </application>
 
-    <receiver android:name=".ServiceReceiver">
-        <intent-filter>
-            <action android:name="android.intent.action.PHONE_STATE" />
-        </intent-filter>
-    </receiver>
+
 
 
 

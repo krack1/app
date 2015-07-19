@@ -67,7 +67,7 @@ public class MyApplicationActivity extends Activity {
         randomButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startMainActivity();
+                setLights();
             }
 
         });
@@ -181,12 +181,21 @@ public class MyApplicationActivity extends Activity {
     }
 
     public void startMainActivity() {
-        Intent intent = new Intent(getApplicationContext(), CallCatcherActivity.class);
+        Intent intent = new Intent(getApplicationContext(), PHHomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
             intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
         startActivity(intent);
+    }
+   public void startcall() {
+       Intent intent = new Intent(getApplicationContext(), CallCatcherActivity.class);
+       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+           intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
+       startActivity(intent);
+
     }
 
     public void huetorgb(int hue, int bri, int sat) {
@@ -199,29 +208,29 @@ public class MyApplicationActivity extends Activity {
 
         i = ((m_hue%60)/60.00)*255;
 
-        if((m_hue>=0 && m_hue<=60 )||( m_hue>=300 && m_hue<=360))   // Red 값이 255로 고정된 부분(Magenta~Yellow)
+        if((m_hue>=0 && m_hue<=60 )||( m_hue>=300 && m_hue<=360))
             m_cr=255;
-        else if(m_hue>60 && m_hue<120)  // Red 값이 감소하는 위치 (Yellow ~ Green)
+        else if(m_hue>60 && m_hue<120)
             m_cr=255-i;
-        else if(m_hue>240 && m_hue<300) // Red 값이 상승하는 위치 (Blue ~ Magenta)
+        else if(m_hue>240 && m_hue<300)
             m_cr=i;
         else
             m_cr=0;
 
-        if(m_hue>=60 && m_hue<=180)      // Green 값이 고장되어 있는 위치 (Yellow ~ Cyan)
+        if(m_hue>=60 && m_hue<=180)
             m_cg=255;
-        else if(m_hue>180 && m_hue<240) // Green값이 감소하는 위치 (Cyan ~ Blue)
+        else if(m_hue>180 && m_hue<240)
             m_cg=255-i;
-        else if(m_hue>0 && m_hue<60)     // Green값이 상승하는 위치 (Red ~ Yellow)
+        else if(m_hue>0 && m_hue<60)
             m_cg=i;
         else
             m_cg=0;
 
-        if(m_hue>=180 && m_hue<=300 )   // Blue 값이 고정되어 있는 위치 (Cyan ~ Magenta)
+        if(m_hue>=180 && m_hue<=300 )
             m_cb=255;
-        else if(m_hue>300 && m_hue<360) // Blue 값이 감소하는 위치 (Magenta ~ Red)
+        else if(m_hue>300 && m_hue<360)
             m_cb=255-i;
-        else if(m_hue>120 && m_hue<180) // Blue 값이 상승하는 위치 (Green ~ Cyan)
+        else if(m_hue>120 && m_hue<180)
             m_cb=i;
         else
             m_cb=0;

@@ -18,16 +18,13 @@ public class ServiceReceiver extends BroadcastReceiver {
 		TelephonyManager telephony = (TelephonyManager) context
 				.getSystemService(Context.TELEPHONY_SERVICE);
 
-		telephony
-				.listen(phoneListener, PhoneStateListener.LISTEN_SERVICE_STATE);
+		telephony.listen(phoneListener, PhoneStateListener.LISTEN_SERVICE_STATE);
 		telephony.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
 
-		Intent testActivityIntent = new Intent(context,
-				PHHomeActivity.class);
+		Intent testActivityIntent = new Intent(context, PHHomeActivity.class);
 		testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
 		context.startActivity(testActivityIntent);
 
 	}
-
 }

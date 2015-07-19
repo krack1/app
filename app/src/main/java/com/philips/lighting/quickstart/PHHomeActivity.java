@@ -14,16 +14,21 @@ import android.widget.ListView;
 
 import com.philips.lighting.data.AccessPointListAdapter;
 import com.philips.lighting.data.HueSharedPreferences;
+import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHAccessPoint;
 import com.philips.lighting.hue.sdk.PHBridgeSearchManager;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.hue.sdk.PHMessageType;
 import com.philips.lighting.hue.sdk.PHSDKListener;
 import com.philips.lighting.model.PHBridge;
+import com.philips.lighting.model.PHBridgeResource;
 import com.philips.lighting.model.PHHueError;
 import com.philips.lighting.model.PHHueParsingError;
+import com.philips.lighting.model.PHLight;
+import com.philips.lighting.model.PHLightState;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * PHHomeActivity - The starting point in your own Hue App.
@@ -134,7 +139,7 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
             phHueSDK.getLastHeartbeat().put(b.getResourceCache().getBridgeConfiguration() .getIpAddress(), System.currentTimeMillis());
             prefs.setLastConnectedIPAddress(b.getResourceCache().getBridgeConfiguration().getIpAddress());
             prefs.setUsername(prefs.getUsername());
-            PHWizardAlertDialog.getInstance().closeProgressDialog();     
+            PHWizardAlertDialog.getInstance().closeProgressDialog();
             startMainActivity();
         }
 
@@ -283,5 +288,48 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
             intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
         startActivity(intent);
     }
+
+    public void setLights() {
+
+        PHBridge bridge = phHueSDK.getSelectedBridge();
+
+        PHLightState lightState = new PHLightState();
+
+        String light = "3";
+        lightState.setHue(35000);
+        lightState.setBrightness(200);
+        lightState.setSaturation(200);
+
+        // To validate your lightstate is valid (before sending to the bridge) you can use:
+        // String validState = lightState.validateState();
+
+        bridge.updateLightState(light, lightState, listener_a);
+
+        //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.
+    }
+
+    PHLightListener listener_a = new PHLightListener() {
+
+        @Override
+        public void onSuccess() {
+        }
+
+        @Override
+        public void onStateUpdate(Map<String, String> arg0, List<PHHueError> arg1) {
+            Log.w(TAG, "Light has updated");
+        }
+
+        @Override
+        public void onError(int arg0, String arg1) {}
+
+        @Override
+        public void onReceivingLightDetails(PHLight arg0) {}
+
+        @Override
+        public void onReceivingLights(List<PHBridgeResource> arg0) {}
+
+        @Override
+        public void onSearchComplete() {}
+    };
     
 }
