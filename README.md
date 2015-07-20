@@ -67,5 +67,9 @@ philips hue의 HSB변환 방식이 어떻게 이루어 지는지 분석이 필�
 
 백그라운드로 실행 되는것과 이를통해 led를 어떻게 제어 할 수 있는지 해결해야 한다.
 
+BroadcsstReceiver를 통해 전화나 문자가 올때 activity를 실행 시킬 수 있으나 
+
+activity가 백그라운드에서 led에 신호를 주는 방법 구현이 필요하다.
+
 
 
