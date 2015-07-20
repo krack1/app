@@ -20,12 +20,14 @@
     <string name="could_not_find_bridge">Hue cannot find your bridge. Please check that it is connected to the same Wi-Fi router as your app and press</string>
     <string name="enter_light_name">Enter light name</string>
     <string name="first_page">처음으로</string>
+    <string name="hello_world">Hello world!</string>
     <string name="menu_find_bridge">브릿지 찾기</string>
     <string name="menu_refresh">갱신</string>
     <string name="no_bridge">No Bridge Found.   Start Bridge Search</string>
     <string name="press_pushlink_button">Press the link button on the bridge</string>
     <string name="search_progress">Searching ...</string>
     <string name="searching_for_bridges">Searching for Bridges</string>
+    <string name="title_activity_push_color">push_color</string>
     <string name="title_error">Error</string>
     <string name="txt_click_random_button">Insert that, you wnat change the color</string>
     <string name="txt_could_not_connect">No connection</string>
