@@ -9,10 +9,19 @@ import android.util.Log;
 
 public class ServiceReceiver extends BroadcastReceiver {
 	private String TAG = "CallCatcher";
+	static final String logTag = "SmsReceiver";
+	static final String ACTION = "android.provider.Telephony.SMS_RECEIVED";
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		Log.i(TAG, "ServiceReceiver->onReceive();");
+
+		if(intent.getAction().equals(ACTION)) {
+			Intent smsintent = new Intent(context, CallCatcherActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+			context.startActivity(smsintent);
+		}
 
 		MyPhoneStateListener phoneListener = new MyPhoneStateListener();
 		TelephonyManager telephony = (TelephonyManager) context
@@ -25,6 +34,8 @@ public class ServiceReceiver extends BroadcastReceiver {
 		testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
 		context.startActivity(testActivityIntent);
+
+
 
 	}
 }

@@ -188,15 +188,6 @@ public class MyApplicationActivity extends Activity {
             intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
         startActivity(intent);
     }
-   public void startcall() {
-       Intent intent = new Intent(getApplicationContext(), CallCatcherActivity.class);
-       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-           intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
-       startActivity(intent);
-
-    }
 
     public void huetorgb(int hue, int bri, int sat) {
         double i;

@@ -23,10 +23,15 @@ public class push_color extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        phHueSDK = PHHueSDK.create();
+
         setLights();
 
     }
     public void setLights() {
+
+
 
         PHBridge bridge = phHueSDK.getSelectedBridge();
 
@@ -69,6 +74,21 @@ public class push_color extends Activity {
         @Override
         public void onSearchComplete() {}
     };
+
+    protected void onDestroy() {
+        PHBridge bridge = phHueSDK.getSelectedBridge();
+        if (bridge != null) {
+
+            if (phHueSDK.isHeartbeatEnabled(bridge)) {
+                phHueSDK.disableHeartbeat(bridge);
+            }
+
+            phHueSDK.disconnect(bridge);
+            super.onDestroy();
+        }
+    }
+
+
 
 }
 
