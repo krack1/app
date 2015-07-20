@@ -69,7 +69,7 @@ philips hue의 HSB변환 방식이 어떻게 이루어 지는지 분석이 필�
 
 BroadcsstReceiver를 통해 전화나 문자가 올때 activity를 실행 시킬 수 있으나 
 
-activity가 백그라운드에서 led에 신호를 주는 방법 구현이 필요하다.
+*******activity가 백그라운드에서 led에 신호를 주는 방법 구현이 필요하다.********
 
 
 
