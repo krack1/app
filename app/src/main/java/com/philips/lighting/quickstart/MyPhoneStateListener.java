@@ -1,17 +1,19 @@
 package com.philips.lighting.quickstart;
 
+import android.content.Intent;
 import android.telephony.PhoneStateListener;
-import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-
+import android.widget.Toast;
 public class MyPhoneStateListener extends PhoneStateListener {
 	private String TAG = "CallCatcher";
-
+	public Boolean ringing = false;
 	@Override
 	public void onCallStateChanged(int state, String incomingNumber) {
+
 		switch (state) {
 		case TelephonyManager.CALL_STATE_IDLE:
+
 			Log.i(TAG,
 					"MyPhoneStateListener->onCallStateChanged() -> CALL_STATE_IDLE "
 							+ incomingNumber);
@@ -22,9 +24,17 @@ public class MyPhoneStateListener extends PhoneStateListener {
 							+ incomingNumber);
 			break;
 		case TelephonyManager.CALL_STATE_RINGING:
+			Toast.makeText(ServiceReceiver.context, "incoming call", Toast.LENGTH_LONG).show();
+			Intent testActivityIntent = new Intent(ServiceReceiver.context, CallCatcherActivity.class);
+			testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+			ServiceReceiver.context.startActivity(testActivityIntent);
+
+			ringing = true;
 			Log.i(TAG,
-					"MyPhoneStateListener->onCallStateChanged() -> CALL_STATE_RINGING "
-							+ incomingNumber);
+						"MyPhoneStateListener->onCallStateChanged() -> CALL_STATE_RINGING "
+								+ incomingNumber);
+
 			break;
 		default:
 			Log.i(TAG,
@@ -32,9 +42,12 @@ public class MyPhoneStateListener extends PhoneStateListener {
 							+ Integer.toString(state));
 			break;
 		}
+
 	}
 
-	@Override
+
+
+	/*@Override
 	public void onServiceStateChanged(ServiceState serviceState) {
 		switch (serviceState.getState()) {
 		case ServiceState.STATE_IN_SERVICE:
@@ -63,5 +76,5 @@ public class MyPhoneStateListener extends PhoneStateListener {
 							+ Integer.toString(serviceState.getState()));
 			break;
 		}
-	}
+	}*/
 }

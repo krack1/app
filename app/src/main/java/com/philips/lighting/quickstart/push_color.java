@@ -38,7 +38,7 @@ public class push_color extends Activity {
         PHLightState lightState = new PHLightState();
 
 
-        String light = "3";
+        String light = "4";
         lightState.setHue(35000);
         lightState.setBrightness(200);
         lightState.setSaturation(200);
