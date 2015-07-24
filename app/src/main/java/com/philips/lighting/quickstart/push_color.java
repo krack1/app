@@ -26,10 +26,14 @@ public class push_color extends Activity {
 
         phHueSDK = PHHueSDK.create();
 
-        setLights();
+        try {
+            setLights();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
-    public void setLights() {
+    public void setLights() throws InterruptedException {
 
 
 
@@ -47,6 +51,14 @@ public class push_color extends Activity {
         // String validState = lightState.validateState();
 
         bridge.updateLightState(light, lightState, listener_a);
+        Thread.sleep(3000);
+
+        lightState.setHue(5000);
+        lightState.setBrightness(200);
+        lightState.setSaturation(200);
+
+        bridge.updateLightState(light, lightState, listener_a);
+
 
         //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.
     }

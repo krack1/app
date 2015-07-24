@@ -11,7 +11,7 @@ public class HueSharedPreferences {
     private static final String LAST_CONNECTED_USERNAME      = "LastConnectedUsername";
     private static final String LAST_CONNECTED_IP            = "LastConnectedIP";
     private static HueSharedPreferences instance = null;
-    private SharedPreferences mSharedPreferences = null;
+    private static SharedPreferences mSharedPreferences = null;
     
     private Editor mSharedPreferencesEditor = null;
     
@@ -47,7 +47,7 @@ public class HueSharedPreferences {
         return (mSharedPreferencesEditor.commit());
 	}
     
-    public String getLastConnectedIPAddress() {
+    public static String getLastConnectedIPAddress() {
         return mSharedPreferences.getString(LAST_CONNECTED_IP, "");
    }
 

@@ -8,11 +8,17 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
 
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <android:uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <android:uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
 
     <application
         android:allowBackup="true"
@@ -28,7 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".CallCatcherActivity"
             android:label="@string/app_name" >
@@ -37,7 +42,6 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MyApplicationActivity"
             android:label="@string/txt_selectbridges" >
@@ -53,11 +57,18 @@
             </intent-filter>
         </receiver>
 
-
         <activity
             android:name=".push_color"
             android:label="@string/title_activity_push_color" >
         </activity>
+
+        <service
+            android:name=".light_change"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
+
     </application>
 
 </manifest>
