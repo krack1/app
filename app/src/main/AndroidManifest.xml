@@ -57,15 +57,9 @@
             </intent-filter>
         </receiver>
 
-        <activity
+        <service
             android:name=".push_color"
             android:label="@string/title_activity_push_color" >
-        </activity>
-
-        <service
-            android:name=".light_change"
-            android:enabled="true"
-            android:exported="true" >
         </service>
 
 

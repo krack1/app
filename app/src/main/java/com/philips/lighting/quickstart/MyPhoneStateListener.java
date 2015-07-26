@@ -6,15 +6,16 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 public class MyPhoneStateListener extends PhoneStateListener {
+
 	private String TAG = "CallCatcher";
 	public Boolean ringing = false;
 	@Override
 	public void onCallStateChanged(int state, String incomingNumber) {
 
 		switch (state) {
-		case TelephonyManager.CALL_STATE_IDLE:
+		/*case TelephonyManager.CALL_STATE_IDLE:
 
-			Log.i(TAG,
+			Lo`g.i(TAG,
 					"MyPhoneStateListener->onCallStateChanged() -> CALL_STATE_IDLE "
 							+ incomingNumber);
 			break;
@@ -23,14 +24,17 @@ public class MyPhoneStateListener extends PhoneStateListener {
 					"MyPhoneStateListener->onCallStateChanged() -> CALL_STATE_OFFHOOK "
 							+ incomingNumber);
 			break;
+			*/
 		case TelephonyManager.CALL_STATE_RINGING:
-			Toast.makeText(ServiceReceiver.context, "incoming call", Toast.LENGTH_SHORT).show();
-			Intent testActivityIntent = new Intent(ServiceReceiver.context, CallCatcherActivity.class);
-			testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-			ServiceReceiver.context.startActivity(testActivityIntent);
-
+			if(ringing = false) {
+				Toast.makeText(ServiceReceiver.context, "incoming call", Toast.LENGTH_SHORT).show();
+				Intent testActivityIntent = new Intent(ServiceReceiver.context, push_color.class);
+				testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+				ServiceReceiver.context.startService(testActivityIntent);
+			}
 			ringing = true;
+
 			Log.i(TAG,
 						"MyPhoneStateListener->onCallStateChanged() -> CALL_STATE_RINGING "
 								+ incomingNumber);
@@ -40,6 +44,7 @@ public class MyPhoneStateListener extends PhoneStateListener {
 			Log.i(TAG,
 					"MyPhoneStateListener->onCallStateChanged() -> default -> "
 							+ Integer.toString(state));
+			ringing = false;
 			break;
 		}
 

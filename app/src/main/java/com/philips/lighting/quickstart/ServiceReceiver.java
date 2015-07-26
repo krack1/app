@@ -15,6 +15,8 @@ public class ServiceReceiver extends BroadcastReceiver {
 	static Context context;
 	private HueSharedPreferences prefs;
 
+
+
 	//static final String logTag = "SmsReceiver";
 	//static final String ACTION = "android.provider.Telephony.SMS_RECEIVED";
 
@@ -24,15 +26,15 @@ public class ServiceReceiver extends BroadcastReceiver {
 		Log.i(TAG, "ServiceReceiver->onReceive();");
 		prefs = HueSharedPreferences.getInstance(context);
 
-		if(prefs.getLastConnectedIPAddress() != null) {
-			MyPhoneStateListener phoneListener = new MyPhoneStateListener();
-			TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+			if (prefs.getLastConnectedIPAddress() != null) {
+				MyPhoneStateListener phoneListener = new MyPhoneStateListener();
+				TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
-			telephony.listen(phoneListener, PhoneStateListener.LISTEN_SERVICE_STATE);
-			telephony.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
-		}
-		else{
-			Toast.makeText(context, "fail", Toast.LENGTH_SHORT);
-		}
+				telephony.listen(phoneListener, PhoneStateListener.LISTEN_SERVICE_STATE);
+				telephony.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
+			} else {
+				Toast.makeText(context, "fail", Toast.LENGTH_SHORT);
+			}
+
 	}
 }

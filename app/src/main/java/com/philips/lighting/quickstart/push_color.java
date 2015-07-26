@@ -1,7 +1,8 @@
 package com.philips.lighting.quickstart;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
 import android.util.Log;
 
 import com.philips.lighting.hue.listener.PHLightListener;
@@ -16,26 +17,34 @@ import java.util.List;
 import java.util.Map;
 
 
-public class push_color extends Activity {
+public class push_color extends Service {
     private PHHueSDK phHueSDK;
     public static final String TAG = "QuickStart";
-
+    public int count = 0;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate() {
+        super.onCreate();
 
         phHueSDK = PHHueSDK.create();
+    }
+    public int onStartCommand(Intent intent, int flags, int startId) {
 
         try {
-            setLights();
+                setLights();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        return START_STICKY;
     }
+    @Override
+    public IBinder onBind(Intent intent) {
+        // TODO: Return the communication channel to the service.
+        return null;
+    }
+
     public void setLights() throws InterruptedException {
-
-
 
         PHBridge bridge = phHueSDK.getSelectedBridge();
 
@@ -87,14 +96,12 @@ public class push_color extends Activity {
         public void onSearchComplete() {}
     };
 
-    protected void onDestroy() {
+    public void onDestroy() {
         PHBridge bridge = phHueSDK.getSelectedBridge();
         if (bridge != null) {
-
-            if (phHueSDK.isHeartbeatEnabled(bridge)) {
-                phHueSDK.disableHeartbeat(bridge);
-            }
-
+            //if (phHueSDK.isHeartbeatEnabled(bridge)) {        //if close app disconnect bridge
+            //    phHueSDK.disableHeartbeat(bridge);
+            //}
             phHueSDK.disconnect(bridge);
             super.onDestroy();
         }
