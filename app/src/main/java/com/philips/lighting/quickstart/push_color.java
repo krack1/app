@@ -62,6 +62,7 @@ public class push_color extends Service {
         lightState.setBrightness(200);
         lightState.setSaturation(200);
 
+
         // To validate your lightstate is valid (before sending to the bridge) you can use:
         // String validState = lightState.validateState();
 
