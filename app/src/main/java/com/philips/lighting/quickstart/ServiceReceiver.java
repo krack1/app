@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.philips.lighting.data.HueSharedPreferences;
 
@@ -14,6 +13,7 @@ public class ServiceReceiver extends BroadcastReceiver {
 	private String TAG = "CallCatcher";
 	static Context context;
 	private HueSharedPreferences prefs;
+	public static Boolean act = false;
 
 
 
@@ -26,15 +26,12 @@ public class ServiceReceiver extends BroadcastReceiver {
 		Log.i(TAG, "ServiceReceiver->onReceive();");
 		prefs = HueSharedPreferences.getInstance(context);
 
-			if (prefs.getLastConnectedIPAddress() != null) {
+
 				MyPhoneStateListener phoneListener = new MyPhoneStateListener();
 				TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
 				telephony.listen(phoneListener, PhoneStateListener.LISTEN_SERVICE_STATE);
 				telephony.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
-			} else {
-				Toast.makeText(context, "fail", Toast.LENGTH_SHORT);
-			}
 
 	}
 }

@@ -30,7 +30,13 @@ public class push_color extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         try {
+            if(ServiceReceiver.act == false) {
                 setLights();
+            }
+            else{
+                return 0;
+            }
+            ServiceReceiver.act = true;
 
         } catch (InterruptedException e) {
             e.printStackTrace();

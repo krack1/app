@@ -13,12 +13,13 @@ public class MyPhoneStateListener extends PhoneStateListener {
 	public void onCallStateChanged(int state, String incomingNumber) {
 
 		switch (state) {
-		/*case TelephonyManager.CALL_STATE_IDLE:
-
-			Lo`g.i(TAG,
+		case TelephonyManager.CALL_STATE_IDLE:
+			ServiceReceiver.act = false;
+			Log.i(TAG,
 					"MyPhoneStateListener->onCallStateChanged() -> CALL_STATE_IDLE "
 							+ incomingNumber);
 			break;
+		/*
 		case TelephonyManager.CALL_STATE_OFFHOOK:
 			Log.i(TAG,
 					"MyPhoneStateListener->onCallStateChanged() -> CALL_STATE_OFFHOOK "
@@ -26,13 +27,13 @@ public class MyPhoneStateListener extends PhoneStateListener {
 			break;
 			*/
 		case TelephonyManager.CALL_STATE_RINGING:
-			if(ringing = false) {
+
 				Toast.makeText(ServiceReceiver.context, "incoming call", Toast.LENGTH_SHORT).show();
 				Intent testActivityIntent = new Intent(ServiceReceiver.context, push_color.class);
 				testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
 				ServiceReceiver.context.startService(testActivityIntent);
-			}
+
 			ringing = true;
 
 			Log.i(TAG,
