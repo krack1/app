@@ -22,8 +22,7 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout1=0x7f08000f;
-        public static final int action_settings=0x7f080017;
-        public static final int back_start=0x7f080018;
+        public static final int back_start=0x7f080017;
         public static final int bri_seekBar=0x7f08000a;
         public static final int bridge_ip=0x7f080014;
         public static final int bridge_list=0x7f08000d;
@@ -38,6 +37,7 @@ public final class R {
         public static final int imageView1=0x7f080011;
         public static final int linear1=0x7f08000c;
         public static final int main_Relation=0x7f080000;
+        public static final int push_setting=0x7f080018;
         public static final int refresh=0x7f080015;
         public static final int result=0x7f08000b;
         public static final int sat_seekBar=0x7f080005;
@@ -83,15 +83,16 @@ public final class R {
         public static final int press_pushlink_button=0x7f060012;
         public static final int search_progress=0x7f060013;
         public static final int searching_for_bridges=0x7f060014;
-        public static final int title_activity_push_color=0x7f060015;
-        public static final int title_error=0x7f060016;
-        public static final int txt_click_random_button=0x7f060017;
-        public static final int txt_could_not_connect=0x7f060018;
-        public static final int txt_last_heartbeat=0x7f060019;
-        public static final int txt_pushlink=0x7f06001a;
-        public static final int txt_sdk_version=0x7f06001b;
-        public static final int txt_select_smartbridge=0x7f06001c;
-        public static final int txt_selectbridges=0x7f06001d;
+        public static final int setting=0x7f060015;
+        public static final int title_activity_push_color=0x7f060016;
+        public static final int title_error=0x7f060017;
+        public static final int txt_click_random_button=0x7f060018;
+        public static final int txt_could_not_connect=0x7f060019;
+        public static final int txt_last_heartbeat=0x7f06001a;
+        public static final int txt_pushlink=0x7f06001b;
+        public static final int txt_sdk_version=0x7f06001c;
+        public static final int txt_select_smartbridge=0x7f06001d;
+        public static final int txt_selectbridges=0x7f06001e;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 

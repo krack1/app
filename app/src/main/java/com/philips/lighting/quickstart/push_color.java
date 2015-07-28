@@ -2,6 +2,7 @@ package com.philips.lighting.quickstart;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -20,6 +21,7 @@ import java.util.Map;
 public class push_color extends Service {
     private PHHueSDK phHueSDK;
     public static final String TAG = "QuickStart";
+    public SharedPreferences prefs_led_state;
     public int count = 0;
     @Override
     public void onCreate() {
@@ -69,9 +71,10 @@ public class push_color extends Service {
         bridge.updateLightState(light, lightState, listener_a);
         Thread.sleep(3000);
 
-        lightState.setHue(5000);
-        lightState.setBrightness(200);
-        lightState.setSaturation(200);
+        prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
+        lightState.setHue(prefs_led_state.getInt("hue", 0));
+        lightState.setBrightness(prefs_led_state.getInt("bri", 0));
+        lightState.setSaturation(prefs_led_state.getInt("sat", 0));
 
         bridge.updateLightState(light, lightState, listener_a);
 

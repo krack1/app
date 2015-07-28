@@ -2,6 +2,7 @@ package com.philips.lighting.quickstart;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,6 +42,12 @@ public class MyApplicationActivity extends Activity {
     public static final String TAG = "QuickStart";
     public int h, s, b;
     public int m_red, m_green, m_blue;
+    public SharedPreferences prefs_led_state;
+    SeekBar seekHue;
+    SeekBar seekSat;
+    EditText textId;
+    SeekBar seekBri;
+
 
     private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
         public void onStopTrackingTouch(SeekBar seekBar)
@@ -62,15 +69,31 @@ public class MyApplicationActivity extends Activity {
         setTitle(R.string.app_name);
         setContentView(R.layout.activity_main);
         phHueSDK = PHHueSDK.create();
+
+        textId = (EditText) findViewById(R.id.edit_Id);
+        seekHue = (SeekBar) findViewById(R.id.hue_seekBar);
+        seekSat = (SeekBar) findViewById(R.id.sat_seekBar);
+        seekBri = (SeekBar) findViewById(R.id.bri_seekBar);
+
+        prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
+        textId.setText(prefs_led_state.getString("no", ""));
+        seekHue.setProgress(prefs_led_state.getInt("hue", 0));
+        seekSat.setProgress(prefs_led_state.getInt("sat", 0));
+        seekBri.setProgress(prefs_led_state.getInt("bri", 0));
+
         Button randomButton;
         randomButton = (Button) findViewById(R.id.buttonSend);
         randomButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 setLights();
+
             }
 
         });
+    }
+
+    public void setData() {
 
     }
 
@@ -92,17 +115,13 @@ public class MyApplicationActivity extends Activity {
 
 
     public void setLights() {
-        SeekBar seekHue;
-        SeekBar seekSat;
-        EditText textId;
-        SeekBar seekBri;
+
         RelativeLayout m_RelativeLaout;
         TextView hsb_result;
 
-        textId = (EditText) findViewById(R.id.edit_Id);
-        seekHue = (SeekBar) findViewById(R.id.hue_seekBar);
-        seekSat = (SeekBar) findViewById(R.id.sat_seekBar);
-        seekBri = (SeekBar) findViewById(R.id.bri_seekBar);
+
+
+
         m_RelativeLaout = (RelativeLayout) findViewById(R.id.main_Relation);
         hsb_result = (TextView) findViewById(R.id.result);
 
@@ -110,11 +129,13 @@ public class MyApplicationActivity extends Activity {
 
         PHLightState lightState = new PHLightState();
 
+
+
         h = seekHue.getProgress();
         s = seekSat.getProgress();
         b = seekBri.getProgress();
 
-        hsb_result.append("h : " + h+" s : "+ s + "b : " + b);
+        hsb_result.append("h : " + h + " s : " + s + "b : " + b);
 
         lightState.setOn(true);
         huetorgb(h, s, b);
@@ -126,6 +147,16 @@ public class MyApplicationActivity extends Activity {
         lightState.setHue(seekHue.getProgress());
         lightState.setBrightness(seekBri.getProgress());
         lightState.setSaturation(seekSat.getProgress());
+
+        //prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
+
+        prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
+        SharedPreferences.Editor ed = prefs_led_state.edit();
+        ed.putString("no", textId.getText().toString());
+        ed.putInt("hue", seekHue.getProgress());
+        ed.putInt("sat", seekSat.getProgress());
+        ed.putInt("bri", seekBri.getProgress());
+        ed.commit();
 
         // To validate your lightstate is valid (before sending to the bridge) you can use:
         // String validState = lightState.validateState();

@@ -253,8 +253,8 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
         HueSharedPreferences prefs = HueSharedPreferences.getInstance(getApplicationContext());
         PHAccessPoint accessPoint = (PHAccessPoint) adapter.getItem(position);
         accessPoint.setUsername(prefs.getUsername());
-        
-        PHBridge connectedBridge = phHueSDK.getSelectedBridge();       
+
+        PHBridge connectedBridge = phHueSDK.getSelectedBridge();
 
         if (connectedBridge != null) {
             String connectedIP = connectedBridge.getResourceCache().getBridgeConfiguration().getIpAddress();
@@ -264,7 +264,7 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
             }
         }
         PHWizardAlertDialog.getInstance().showProgressDialog(R.string.connecting, PHHomeActivity.this);
-        phHueSDK.connect(accessPoint);  
+        phHueSDK.connect(accessPoint);
     }
     
     public void doBridgeSearch() {

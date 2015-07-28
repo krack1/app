@@ -27,11 +27,21 @@ public class ServiceReceiver extends BroadcastReceiver {
 		prefs = HueSharedPreferences.getInstance(context);
 
 
-				MyPhoneStateListener phoneListener = new MyPhoneStateListener();
-				TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+		MyPhoneStateListener phoneListener = new MyPhoneStateListener();
+		TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
-				telephony.listen(phoneListener, PhoneStateListener.LISTEN_SERVICE_STATE);
-				telephony.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
+		if ("android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction())) {
+			Log.i(TAG, "receive sms");
+			Intent testActivityIntent = new Intent(context, push_color.class);
+			testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+			context.startService(testActivityIntent);
+		}
+
+
+		telephony.listen(phoneListener, PhoneStateListener.LISTEN_SERVICE_STATE);
+		telephony.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
+
 
 	}
 }

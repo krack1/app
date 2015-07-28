@@ -27,6 +27,7 @@
     <string name="press_pushlink_button">Press the link button on the bridge</string>
     <string name="search_progress">Searching ...</string>
     <string name="searching_for_bridges">Searching for Bridges</string>
+    <string name="setting"> setting</string>
     <string name="title_activity_push_color">push_color</string>
     <string name="title_error">Error</string>
     <string name="txt_click_random_button">Insert that, you wnat change the color</string>

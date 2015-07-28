@@ -78,7 +78,8 @@
         android:id="@+id/edit_Id"
         android:textSize="30dp"
         android:layout_toRightOf="@+id/textId"
-        android:layout_toEndOf="@+id/textId" />
+        android:layout_toEndOf="@+id/textId"
+        android:autoText="false" />
 
     <SeekBar
         android:layout_width="wrap_content"
