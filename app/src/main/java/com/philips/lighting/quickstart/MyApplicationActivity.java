@@ -43,10 +43,18 @@ public class MyApplicationActivity extends Activity {
     public int h, s, b;
     public int m_red, m_green, m_blue;
     public SharedPreferences prefs_led_state;
+
     SeekBar seekHue;
     SeekBar seekSat;
     EditText textId;
     SeekBar seekBri;
+
+    public String hue;
+    public String sat;
+    public String bri;
+    public String name;
+
+
 
 
     private SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
@@ -70,16 +78,43 @@ public class MyApplicationActivity extends Activity {
         setContentView(R.layout.activity_main);
         phHueSDK = PHHueSDK.create();
 
-        textId = (EditText) findViewById(R.id.edit_Id);
+        Intent intent = getIntent();
+        name = intent.getExtras().getString("name");
+
+        switch (name) {
+            case "1":
+                hue = "hue1";
+                sat = "sat1";
+                bri = "bri1";
+                break;
+
+            case "2":
+                hue = "hue2";
+                sat = "sat2";
+                bri = "bri2";
+                break;
+
+            case "3":
+                hue = "hue3";
+                sat = "sat3";
+                bri = "bri3";
+                break;
+            case "4":
+                hue = "hue4";
+                sat = "sat4";
+                bri = "bri4";
+                break;
+        }
+
+
         seekHue = (SeekBar) findViewById(R.id.hue_seekBar);
         seekSat = (SeekBar) findViewById(R.id.sat_seekBar);
         seekBri = (SeekBar) findViewById(R.id.bri_seekBar);
 
         prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
-        textId.setText(prefs_led_state.getString("no", ""));
-        seekHue.setProgress(prefs_led_state.getInt("hue", 0));
-        seekSat.setProgress(prefs_led_state.getInt("sat", 0));
-        seekBri.setProgress(prefs_led_state.getInt("bri", 0));
+        seekHue.setProgress(prefs_led_state.getInt(hue, 0));
+        seekSat.setProgress(prefs_led_state.getInt(sat, 0));
+        seekBri.setProgress(prefs_led_state.getInt(bri, 0));
 
         Button randomButton;
         randomButton = (Button) findViewById(R.id.buttonSend);
@@ -91,10 +126,6 @@ public class MyApplicationActivity extends Activity {
             }
 
         });
-    }
-
-    public void setData() {
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,6 +140,15 @@ public class MyApplicationActivity extends Activity {
             case R.id.back_start:
                 startMainActivity();
                 break;
+            case R.id.led_setting :
+
+                break;
+            case R.id.info_setting :
+
+                break;
+            case R.id.alam_setting :
+
+                break;
         }
         return true;
     }
@@ -118,8 +158,6 @@ public class MyApplicationActivity extends Activity {
 
         RelativeLayout m_RelativeLaout;
         TextView hsb_result;
-
-
 
 
         m_RelativeLaout = (RelativeLayout) findViewById(R.id.main_Relation);
@@ -143,7 +181,6 @@ public class MyApplicationActivity extends Activity {
 
         m_RelativeLaout.setBackgroundColor(Color.argb(255, m_red, m_green, m_blue));
 
-        String light = textId.getText().toString();
         lightState.setHue(seekHue.getProgress());
         lightState.setBrightness(seekBri.getProgress());
         lightState.setSaturation(seekSat.getProgress());
@@ -152,10 +189,9 @@ public class MyApplicationActivity extends Activity {
 
         prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
         SharedPreferences.Editor ed = prefs_led_state.edit();
-        ed.putString("no", textId.getText().toString());
-        ed.putInt("hue", seekHue.getProgress());
-        ed.putInt("sat", seekSat.getProgress());
-        ed.putInt("bri", seekBri.getProgress());
+        ed.putInt(hue, seekHue.getProgress());
+        ed.putInt(sat, seekSat.getProgress());
+        ed.putInt(bri, seekBri.getProgress());
         ed.commit();
 
         // To validate your lightstate is valid (before sending to the bridge) you can use:
@@ -166,7 +202,7 @@ public class MyApplicationActivity extends Activity {
         else {
             lightState.setOn(true);
         }
-            bridge.updateLightState(light, lightState, listener);
+            bridge.updateLightState(name, lightState, listener);
 
             //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.
 

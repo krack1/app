@@ -62,6 +62,11 @@
             android:name="com.philips.lighting.quickstart.push_color"
             android:label="@string/title_activity_push_color" >
         </service>
+
+        <activity
+            android:name="com.philips.lighting.quickstart.led_display"
+            android:label="@string/title_activity_led_display" >
+        </activity>
     </application>
 
 </manifest>

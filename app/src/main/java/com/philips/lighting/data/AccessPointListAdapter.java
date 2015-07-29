@@ -1,7 +1,5 @@
 package com.philips.lighting.data;
 
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -12,6 +10,8 @@ import android.widget.TextView;
 
 import com.philips.lighting.hue.sdk.PHAccessPoint;
 import com.philips.lighting.quickstart.R;
+
+import java.util.List;
 
 /**
  * This class provides adapter view for a list of Found Bridges.

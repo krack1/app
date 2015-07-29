@@ -45,10 +45,6 @@
         android:layout_alignLeft="@+id/sat_seekBar"
         android:layout_alignStart="@+id/sat_seekBar" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></RelativeLayout>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,27 +55,6 @@
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView" />
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ID"
-        android:id="@+id/textId"
-        android:textSize="30dp"
-        android:layout_below="@+id/textView1"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="2"
-        android:id="@+id/edit_Id"
-        android:textSize="30dp"
-        android:layout_toRightOf="@+id/textId"
-        android:layout_toEndOf="@+id/textId"
-        android:autoText="false" />
 
     <SeekBar
         android:layout_width="wrap_content"
