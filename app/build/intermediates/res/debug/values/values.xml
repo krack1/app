@@ -31,6 +31,8 @@
     <string name="second_page">알림</string>
     <string name="setting"> setting</string>
     <string name="third_page">설정</string>
+    <string name="title_activity_alam_application">AlamApplicationActivity</string>
+    <string name="title_activity_alam_display">alam_display</string>
     <string name="title_activity_led_display">led_display</string>
     <string name="title_activity_push_color">push_color</string>
     <string name="title_error">Error</string>

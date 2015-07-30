@@ -23,13 +23,42 @@ public class push_color extends Service {
     public static final String TAG = "QuickStart";
     public SharedPreferences prefs_led_state;
     public int count = 0;
+    public String push;
+    private String led;
+    private String hue;
+    private String sat;
+    private String bri;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         phHueSDK = PHHueSDK.create();
+
+
+
+
     }
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+        push = intent.getExtras().getString("push");
+
+        Log.i(TAG, "here "+ push);
+        switch (push) {
+            case "PHONE":
+                led = "led_PHONE";
+                hue = "hue_PHONE";
+                sat = "sat_PHONE";
+                bri = "bri_PHONE";
+                break;
+
+            case "SMS":
+                led = "led_LED";
+                hue = "hue_LED";
+                sat = "sat_LED";
+                bri = "bri_LED";
+                break;
+        }
 
         try {
             if(ServiceReceiver.act == false) {
@@ -58,24 +87,22 @@ public class push_color extends Service {
 
         PHLightState lightState = new PHLightState();
 
-
-
-        String light = "4";
-        lightState.setHue(35000);
-        lightState.setBrightness(200);
-        lightState.setSaturation(200);
+        prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
+        String light = prefs_led_state.getString(led, "4");
+        lightState.setHue(prefs_led_state.getInt(hue, 0));
+        lightState.setBrightness(prefs_led_state.getInt(bri, 0));
+        lightState.setSaturation(prefs_led_state.getInt(sat, 0));
 
 
         // To validate your lightstate is valid (before sending to the bridge) you can use:
         // String validState = lightState.validateState();
-
         bridge.updateLightState(light, lightState, listener_a);
         Thread.sleep(3000);
 
         prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
-        lightState.setHue(prefs_led_state.getInt("hue", 0));
-        lightState.setBrightness(prefs_led_state.getInt("bri", 0));
-        lightState.setSaturation(prefs_led_state.getInt("sat", 0));
+        lightState.setHue(prefs_led_state.getInt("hue"+light, 0));
+        lightState.setBrightness(prefs_led_state.getInt("bri"+light, 0));
+        lightState.setSaturation(prefs_led_state.getInt("sat"+light, 0));
 
         bridge.updateLightState(light, lightState, listener_a);
 

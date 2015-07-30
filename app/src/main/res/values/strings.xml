@@ -38,4 +38,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_led_display">led_display</string>
+    <string name="title_activity_alam_display">alam_display</string>
+    <string name="title_activity_alam_application">AlamApplicationActivity</string>
 </resources>

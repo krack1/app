@@ -29,14 +29,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * MyApplicationActivity - The starting point for creating your own Hue App.  
+ * MyApplicationActivity - The starting point for creating your own Hue App.
  * Currently contains a simple view with a button to change your lights to random colours.  Remove this and add your own app implementation here! Have fun!
- * 
+ *
  * @author SteveyO
  *
  */
 
-public class MyApplicationActivity extends Activity {
+public class AlamApplicationActivity extends Activity {
     private PHHueSDK phHueSDK;
     private static final int MAX_HUE=65535;
     public static final String TAG = "QuickStart";
@@ -49,10 +49,11 @@ public class MyApplicationActivity extends Activity {
     EditText textId;
     SeekBar seekBri;
 
+    public String led;
     public String hue;
     public String sat;
     public String bri;
-    public String name;
+    public String app;
 
 
 
@@ -75,50 +76,42 @@ public class MyApplicationActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.app_name);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_alam_application);
         phHueSDK = PHHueSDK.create();
 
         Intent intent = getIntent();
-        name = intent.getExtras().getString("name");
+        app = intent.getExtras().getString("app");
 
-        switch (name) {
-            case "1":
-                hue = "hue1";
-                sat = "sat1";
-                bri = "bri1";
+        switch (app) {
+            case "PHONE":
+                led = "led_PHONE";
+                hue = "hue_PHONE";
+                sat = "sat_PHONE";
+                bri = "bri_PHONE";
                 break;
 
-            case "2":
-                hue = "hue2";
-                sat = "sat2";
-                bri = "bri2";
-                break;
-
-            case "3":
-                hue = "hue3";
-                sat = "sat3";
-                bri = "bri3";
-                break;
-            case "4":
-                hue = "hue4";
-                sat = "sat4";
-                bri = "bri4";
+            case "SMS":
+                led = "led_SMS";
+                hue = "hue_SMS";
+                sat = "sat_SMS";
+                bri = "bri_SMS";
                 break;
         }
 
-
-        seekHue = (SeekBar) findViewById(R.id.hue_seekBar);
-        seekSat = (SeekBar) findViewById(R.id.sat_seekBar);
-        seekBri = (SeekBar) findViewById(R.id.bri_seekBar);
+        textId = (EditText) findViewById(R.id.alam_led);
+        seekHue = (SeekBar) findViewById(R.id.alam_hue);
+        seekSat = (SeekBar) findViewById(R.id.alam_sat);
+        seekBri = (SeekBar) findViewById(R.id.alam_bri);
 
         prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
+        textId.setText(prefs_led_state.getString(led, ""));
         seekHue.setProgress(prefs_led_state.getInt(hue, 0));
         seekSat.setProgress(prefs_led_state.getInt(sat, 0));
         seekBri.setProgress(prefs_led_state.getInt(bri, 0));
 
-        Button randomButton;
-        randomButton = (Button) findViewById(R.id.buttonSend);
-        randomButton.setOnClickListener(new OnClickListener() {
+        Button saveButton;
+        saveButton = (Button) findViewById(R.id.buttonSave);
+        saveButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 setLights();
@@ -161,7 +154,7 @@ public class MyApplicationActivity extends Activity {
 
 
         m_RelativeLaout = (RelativeLayout) findViewById(R.id.main_Relation);
-        hsb_result = (TextView) findViewById(R.id.result);
+        hsb_result = (TextView) findViewById(R.id.ans);
 
         PHBridge bridge = phHueSDK.getSelectedBridge();
 
@@ -189,6 +182,7 @@ public class MyApplicationActivity extends Activity {
 
         prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
         SharedPreferences.Editor ed = prefs_led_state.edit();
+        ed.putString(led, textId.getText().toString());
         ed.putInt(hue, seekHue.getProgress());
         ed.putInt(sat, seekSat.getProgress());
         ed.putInt(bri, seekBri.getProgress());
@@ -202,24 +196,24 @@ public class MyApplicationActivity extends Activity {
         else {
             lightState.setOn(true);
         }
-            bridge.updateLightState(name, lightState, listener);
+        bridge.updateLightState(app, lightState, listener);
 
-            //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.
+        //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.
 
 
     }
     // If you want to handle the response from the bridge, create a PHLightListener object.
     PHLightListener listener = new PHLightListener() {
-        
+
         @Override
-        public void onSuccess() {  
+        public void onSuccess() {
         }
-        
+
         @Override
         public void onStateUpdate(Map<String, String> arg0, List<PHHueError> arg1) {
-           Log.w(TAG, "Light has updated");
+            Log.w(TAG, "Light has updated");
         }
-        
+
         @Override
         public void onError(int arg0, String arg1) {}
 
@@ -232,16 +226,16 @@ public class MyApplicationActivity extends Activity {
         @Override
         public void onSearchComplete() {}
     };
-    
+
     @Override
     protected void onDestroy() {
         PHBridge bridge = phHueSDK.getSelectedBridge();
         if (bridge != null) {
-            
+
             if (phHueSDK.isHeartbeatEnabled(bridge)) {
                 phHueSDK.disableHeartbeat(bridge);
             }
-            
+
             phHueSDK.disconnect(bridge);
             super.onDestroy();
         }

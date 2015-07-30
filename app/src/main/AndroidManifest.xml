@@ -67,6 +67,14 @@
             android:name=".led_display"
             android:label="@string/title_activity_led_display" >
         </activity>
+        <activity
+            android:name=".alam_display"
+            android:label="@string/title_activity_alam_display" >
+        </activity>
+        <activity
+            android:name=".AlamApplicationActivity"
+            android:label="@string/title_activity_alam_application" >
+        </activity>
     </application>
 
 </manifest>

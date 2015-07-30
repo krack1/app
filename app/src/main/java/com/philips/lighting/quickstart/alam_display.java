@@ -19,71 +19,40 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.philips.lighting.data.ListData;
-import com.philips.lighting.hue.sdk.PHHueSDK;
-import com.philips.lighting.model.PHBridge;
-import com.philips.lighting.model.PHLight;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 
-public class led_display extends Activity {
-    private PHHueSDK phHueSDK;
-    public static final String TAG = "QuickStart";
-    private ListView mListView = null;
-    private LedListAdapter mAdapter = null;
-    public String LedNo;
-
-
+public class alam_display extends Activity {
+    private ListView aListView = null;
+    private LedListAdapter aAdapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_led_display);
+        setContentView(R.layout.activity_alam_display);
 
-        mListView = (ListView) findViewById(R.id.mList);
+        aListView = (ListView) findViewById(R.id.aList);
 
-        mAdapter = new LedListAdapter(this);
-        mListView.setAdapter(mAdapter);
+        aAdapter = new LedListAdapter(this);
+        aListView.setAdapter(aAdapter);
+
+        aAdapter.addItem(getResources().getDrawable(R.drawable.ok), "PHONE", "010-****-****");
+        aAdapter.addItem(getResources().getDrawable(R.drawable.ok), "SMS", "010-****-****");
 
 
-        phHueSDK = PHHueSDK.create();
+        aListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                ListData mData = aAdapter.aListData.get(position);
+                Toast.makeText(alam_display.this, mData.mTitle, Toast.LENGTH_SHORT).show();
 
-        PHBridge bridge = phHueSDK.getSelectedBridge();
-
-        List<PHLight> allLights = bridge.getResourceCache().getAllLights();
-        for (PHLight light : allLights) {
-
-            mAdapter.addItem(getResources().getDrawable(R.drawable.ok), light.getIdentifier(), light.getName() );
-        }
-/*
-        mAdapter.addItem(null,
-                "check1",
-                "2014-02-18");
-        mAdapter.addItem(null,
-                "check2",
-                "2014-02-01");
-        mAdapter.addItem(null,
-                "check3",
-                "2014-02-04");
-        mAdapter.addItem(null,
-                "check4",
-                "2014-02-15");
-*/
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id){
-                ListData mData = mAdapter.mListData.get(position);
-                Toast.makeText(led_display.this, mData.mTitle, Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(getApplicationContext(), MyApplicationActivity.class);
-                intent.putExtra("name", mData.mTitle);
+                Intent intent = new Intent(getApplicationContext(), AlamApplicationActivity.class);
+                intent.putExtra("app", mData.mTitle);
                 startActivity(intent);
 
             }
         });
-
-
     }
 
     private class ViewHolder {
@@ -95,22 +64,22 @@ public class led_display extends Activity {
     }
 
     private class LedListAdapter extends BaseAdapter {
-        private Context mContext = null;
-        private ArrayList<ListData> mListData = new ArrayList<ListData>();
+        private Context aContext = null;
+        private ArrayList<ListData> aListData = new ArrayList<ListData>();
 
-        public LedListAdapter(Context mContext) {
+        public LedListAdapter(Context aContext) {
             super();
-            this.mContext = mContext;
+            this.aContext = aContext;
         }
 
         @Override
         public int getCount() {
-            return mListData.size();
+            return aListData.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return mListData.get(position);
+            return aListData.get(position);
         }
 
         @Override
@@ -125,21 +94,21 @@ public class led_display extends Activity {
             addInfo.mTitle = mTitle;
             addInfo.mDate = mDate;
 
-            mListData.add(addInfo);
+            aListData.add(addInfo);
         }
 
         public void remove(int position){
-            mListData.remove(position);
+            aListData.remove(position);
             dataChange();
         }
 
         public void sort(){
-            Collections.sort(mListData, ListData.ALPHA_COMPARATOR);
+            Collections.sort(aListData, ListData.ALPHA_COMPARATOR);
             dataChange();
         }
 
         public void dataChange(){
-            mAdapter.notifyDataSetChanged();
+            aAdapter.notifyDataSetChanged();
         }
 
         @Override
@@ -148,7 +117,7 @@ public class led_display extends Activity {
             if (convertView == null) {
                 holder = new ViewHolder();
 
-                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflater = (LayoutInflater) aContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.selectled_item, null);
 
                 holder.mIcon = (ImageView) convertView.findViewById(R.id.mImage);
@@ -160,7 +129,7 @@ public class led_display extends Activity {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            ListData mData = mListData.get(position);
+            ListData mData = aListData.get(position);
 
             if (mData.mIcon != null) {
                 holder.mIcon.setVisibility(View.VISIBLE);
@@ -175,7 +144,6 @@ public class led_display extends Activity {
             return convertView;
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -239,4 +207,6 @@ public class led_display extends Activity {
             intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
         startActivity(intent);
     }
+
+
 }
