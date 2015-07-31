@@ -243,6 +243,7 @@ public class MyApplicationActivity extends Activity {
             }
             
             phHueSDK.disconnect(bridge);
+
             super.onDestroy();
         }
     }

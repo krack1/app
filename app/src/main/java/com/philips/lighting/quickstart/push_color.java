@@ -43,7 +43,6 @@ public class push_color extends Service {
 
         push = intent.getExtras().getString("push");
 
-        Log.i(TAG, "here "+ push);
         switch (push) {
             case "PHONE":
                 led = "led_PHONE";
