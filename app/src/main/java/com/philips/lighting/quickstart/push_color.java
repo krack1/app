@@ -52,10 +52,10 @@ public class push_color extends Service {
                 break;
 
             case "SMS":
-                led = "led_LED";
-                hue = "hue_LED";
-                sat = "sat_LED";
-                bri = "bri_LED";
+                led = "led_SMS";
+                hue = "hue_SMS";
+                sat = "sat_SMS";
+                bri = "bri_SMS";
                 break;
         }
 

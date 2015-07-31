@@ -42,6 +42,7 @@ public class alam_display extends Activity {
         aAdapter.addItem(getResources().getDrawable(R.drawable.ok), "SMS", "010-****-****");
 
 
+
         aListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 ListData mData = aAdapter.aListData.get(position);
