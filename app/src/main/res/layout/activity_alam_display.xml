@@ -23,6 +23,7 @@
         android:id="@+id/aList"
         android:layout_below="@+id/textView5"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:footerDividersEnabled="false" />
 
 </RelativeLayout>

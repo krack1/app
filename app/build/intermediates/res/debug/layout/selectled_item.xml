@@ -6,10 +6,11 @@
 
     <ImageView
         android:id="@+id/mImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:src="@drawable/ic_launcher"
-        />
+        android:nestedScrollingEnabled="false"
+        android:longClickable="false" />
 
     <LinearLayout
         android:layout_width="wrap_content"

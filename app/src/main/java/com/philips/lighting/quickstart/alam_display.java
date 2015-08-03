@@ -3,6 +3,8 @@ package com.philips.lighting.quickstart;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import com.philips.lighting.data.ListData;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 public class alam_display extends Activity {
@@ -38,8 +41,15 @@ public class alam_display extends Activity {
         aAdapter = new LedListAdapter(this);
         aListView.setAdapter(aAdapter);
 
-        aAdapter.addItem(getResources().getDrawable(R.drawable.ok), "PHONE", "010-****-****");
-        aAdapter.addItem(getResources().getDrawable(R.drawable.ok), "SMS", "010-****-****");
+        aAdapter.addItem(getResources().getDrawable(R.drawable.phone), "PHONE", "010-****-****");
+        aAdapter.addItem(getResources().getDrawable(R.drawable.sms), "SMS", "010-****-****");
+
+        final PackageManager pm = getPackageManager();
+        List<ApplicationInfo> list = pm.getInstalledApplications(PackageManager.GET_UNINSTALLED_PACKAGES);
+        for(ApplicationInfo applicationInfo : list) {
+            if((applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 1)
+            aAdapter.addItem(applicationInfo.loadIcon(pm), String.valueOf(applicationInfo.loadLabel(pm)), applicationInfo.packageName);
+        }
 
 
 
