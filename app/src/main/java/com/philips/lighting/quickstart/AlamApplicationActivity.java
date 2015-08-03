@@ -82,6 +82,12 @@ public class AlamApplicationActivity extends Activity {
         Intent intent = getIntent();
         app = intent.getExtras().getString("app");
 
+        led = "led_"+app;
+        hue = "hue_"+app;
+        sat = "sat_"+app;
+        bri = "bri_"+app;
+
+        /*
         switch (app) {
             case "PHONE":
                 led = "led_PHONE";
@@ -97,7 +103,7 @@ public class AlamApplicationActivity extends Activity {
                 bri = "bri_SMS";
                 break;
         }
-
+*/
         textId = (EditText) findViewById(R.id.alam_led);
         seekHue = (SeekBar) findViewById(R.id.alam_hue);
         seekSat = (SeekBar) findViewById(R.id.alam_sat);

@@ -43,6 +43,11 @@ public class push_color extends Service {
 
         push = intent.getExtras().getString("push");
 
+        led = "led_"+push;
+        hue = "hue_"+push;
+        sat = "sat_"+push;
+        bri = "bri_"+push;
+        /*
         switch (push) {
             case "PHONE":
                 led = "led_PHONE";
@@ -58,6 +63,7 @@ public class push_color extends Service {
                 bri = "bri_SMS";
                 break;
         }
+        */
 
         try {
             if(ServiceReceiver.act == false) {

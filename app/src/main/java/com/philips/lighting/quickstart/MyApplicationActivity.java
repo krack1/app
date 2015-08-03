@@ -81,6 +81,10 @@ public class MyApplicationActivity extends Activity {
         Intent intent = getIntent();
         name = intent.getExtras().getString("name");
 
+        hue = "hue"+name;
+        sat = "sat"+name;
+        bri = "bri"+name;
+        /*
         switch (name) {
             case "1":
                 hue = "hue1";
@@ -105,6 +109,7 @@ public class MyApplicationActivity extends Activity {
                 bri = "bri4";
                 break;
         }
+        */
 
 
         seekHue = (SeekBar) findViewById(R.id.hue_seekBar);
