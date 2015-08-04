@@ -25,6 +25,7 @@
     <string name="second_page">알림</string>
     <string name="third_page">설정</string>
     <string name="forth_page">브릿지검색</string>
+    <string name="all_select">전체선택</string>
 
     <string name="btn_retry">Retry</string>
     <string name="searching_for_bridges">Searching for Bridges</string>
@@ -40,4 +41,5 @@
     <string name="title_activity_led_display">led_display</string>
     <string name="title_activity_alam_display">alam_display</string>
     <string name="title_activity_alam_application">AlamApplicationActivity</string>
+    <string name="title_activity_select_led_activity">select_led_activity</string>
 </resources>

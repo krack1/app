@@ -125,6 +125,15 @@ public class AlamApplicationActivity extends Activity {
             }
 
         });
+
+        Button ledbutton;
+        ledbutton = (Button) findViewById(R.id.select_led);
+        ledbutton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                start_select_led_activity();
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -188,7 +197,7 @@ public class AlamApplicationActivity extends Activity {
 
         prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
         SharedPreferences.Editor ed = prefs_led_state.edit();
-        ed.putString(led, textId.getText().toString());
+        //ed.putString(led, textId.getText().toString());
         ed.putInt(hue, seekHue.getProgress());
         ed.putInt(sat, seekSat.getProgress());
         ed.putInt(bri, seekBri.getProgress());
@@ -277,6 +286,14 @@ public class AlamApplicationActivity extends Activity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
             intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
+        startActivity(intent);
+    }
+
+    public void start_select_led_activity() {
+        Intent intent = new Intent(getApplicationContext(), select_led_activity.class);
+        intent.putExtra("app_select", app);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 

@@ -68,6 +68,10 @@
             android:name="com.philips.lighting.quickstart.AlamApplicationActivity"
             android:label="@string/title_activity_alam_application" >
         </activity>
+        <activity
+            android:name="com.philips.lighting.quickstart.select_led_activity"
+            android:label="@string/title_activity_select_led_activity" >
+        </activity>
     </application>
 
 </manifest>

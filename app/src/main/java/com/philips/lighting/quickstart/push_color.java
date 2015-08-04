@@ -28,6 +28,7 @@ public class push_color extends Service {
     private String hue;
     private String sat;
     private String bri;
+    private String light;
 
     @Override
     public void onCreate() {
@@ -43,7 +44,7 @@ public class push_color extends Service {
 
         push = intent.getExtras().getString("push");
 
-        led = "led_"+push;
+        //led = "led_"+push;
         hue = "hue_"+push;
         sat = "sat_"+push;
         bri = "bri_"+push;
@@ -92,24 +93,42 @@ public class push_color extends Service {
 
         PHLightState lightState = new PHLightState();
 
-        prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
-        String light = prefs_led_state.getString(led, "4");
-        lightState.setHue(prefs_led_state.getInt(hue, 0));
-        lightState.setBrightness(prefs_led_state.getInt(bri, 0));
-        lightState.setSaturation(prefs_led_state.getInt(sat, 0));
+        List<PHLight> allLights = bridge.getResourceCache().getAllLights();
+
+        for(PHLight lights : allLights) {
+
+            prefs_led_state = getSharedPreferences(push, MODE_PRIVATE);
+            light = prefs_led_state.getString("check"+lights.getIdentifier(), "0");
+
+            prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
+
+            lightState.setHue(prefs_led_state.getInt(hue, 0));
+            lightState.setBrightness(prefs_led_state.getInt(bri, 0));
+            lightState.setSaturation(prefs_led_state.getInt(sat, 0));
 
 
-        // To validate your lightstate is valid (before sending to the bridge) you can use:
-        // String validState = lightState.validateState();
-        bridge.updateLightState(light, lightState, listener_a);
-        Thread.sleep(3000);
+            // To validate your lightstate is valid (before sending to the bridge) you can use:
+            // String validState = lightState.validateState();
+            if(light!="0") {
+                bridge.updateLightState(light, lightState, listener_a);
+            }
+        }
+        Thread.sleep(10000);
 
-        prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
-        lightState.setHue(prefs_led_state.getInt("hue"+light, 0));
-        lightState.setBrightness(prefs_led_state.getInt("bri"+light, 0));
-        lightState.setSaturation(prefs_led_state.getInt("sat"+light, 0));
+        List<PHLight> allLightss = bridge.getResourceCache().getAllLights();
 
-        bridge.updateLightState(light, lightState, listener_a);
+        for(PHLight lightss : allLightss) {
+            String light_origin = lightss.getIdentifier();
+            Log.d("test", "hue"+light_origin+", sat"+light_origin+", bri"+light_origin);
+            prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
+            lightState.setHue(prefs_led_state.getInt("hue" + light_origin, 0));
+            lightState.setSaturation(prefs_led_state.getInt("sat" + light_origin, 0));
+            lightState.setBrightness(prefs_led_state.getInt("bri" + light_origin, 0));
+
+            bridge.updateLightState(light_origin, lightState, listener_a);
+
+            Thread.sleep(1000);
+        }
 
 
         //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.

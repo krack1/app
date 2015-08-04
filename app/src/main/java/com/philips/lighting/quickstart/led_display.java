@@ -23,8 +23,10 @@ import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.model.PHLight;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -34,6 +36,7 @@ public class led_display extends Activity {
     private ListView mListView = null;
     private LedListAdapter mAdapter = null;
     public String LedNo;
+
 
 
 
@@ -53,10 +56,30 @@ public class led_display extends Activity {
         PHBridge bridge = phHueSDK.getSelectedBridge();
 
         List<PHLight> allLights = bridge.getResourceCache().getAllLights();
-        for (PHLight light : allLights) {
+
+        List<PHLight> myArrayData = new ArrayList<PHLight>();
+
+
+        for(int i = 0; i< allLights.size(); i++) {
+            myArrayData.add(allLights.get(i));
+        }
+
+        Comparator<PHLight> myComparator = new Comparator<PHLight>() {
+            private final Collator collator = Collator.getInstance();
+            @Override
+            public int compare(PHLight phLight, PHLight t1) {
+                return collator.compare(phLight.getIdentifier(), t1.getIdentifier());
+            }
+        };
+
+        Collections.sort(myArrayData, myComparator);
+
+        for (PHLight light : myArrayData) {
+
 
             mAdapter.addItem(getResources().getDrawable(R.drawable.ok), light.getIdentifier(), light.getName() );
         }
+
 /*
         mAdapter.addItem(null,
                 "check1",

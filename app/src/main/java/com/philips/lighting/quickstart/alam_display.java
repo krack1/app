@@ -62,6 +62,8 @@ public class alam_display extends Activity {
                 intent.putExtra("app", mData.mTitle);
                 startActivity(intent);
 
+
+
             }
         });
     }

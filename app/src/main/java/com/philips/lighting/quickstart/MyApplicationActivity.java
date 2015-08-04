@@ -191,7 +191,7 @@ public class MyApplicationActivity extends Activity {
         lightState.setSaturation(seekSat.getProgress());
 
         //prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
-
+        Log.d("test", hue+","+sat+","+bri);
         prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
         SharedPreferences.Editor ed = prefs_led_state.edit();
         ed.putInt(hue, seekHue.getProgress());

@@ -120,9 +120,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="47dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/alam_bri"
-        android:layout_alignEnd="@+id/alam_bri" />
+        android:layout_alignEnd="@+id/alam_bri"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LED"
+        android:id="@+id/select_led"
+        android:layout_alignTop="@+id/alam_led"
+        android:layout_toRightOf="@+id/alam_led"
+        android:layout_toEndOf="@+id/alam_led" />
 
 
 </RelativeLayout>
