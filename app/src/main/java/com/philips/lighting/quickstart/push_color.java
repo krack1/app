@@ -127,7 +127,7 @@ public class push_color extends Service {
 
             bridge.updateLightState(light_origin, lightState, listener_a);
 
-            Thread.sleep(1000);
+            Thread.sleep(100);
         }
 
 

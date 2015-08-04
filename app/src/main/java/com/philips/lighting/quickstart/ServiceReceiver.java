@@ -71,8 +71,6 @@ public class ServiceReceiver extends BroadcastReceiver {
 			telephony.listen(phoneListener, PhoneStateListener.LISTEN_SERVICE_STATE);
 			telephony.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
 		}
-
-
 	}
 
 	public void doBridgeSearch() {
