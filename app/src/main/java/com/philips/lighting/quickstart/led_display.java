@@ -35,7 +35,6 @@ public class led_display extends Activity {
     public static final String TAG = "QuickStart";
     private ListView mListView = null;
     private LedListAdapter mAdapter = null;
-    public String LedNo;
 
 
 
@@ -261,5 +260,19 @@ public class led_display extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
             intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
         startActivity(intent);
+    }
+
+    protected void onDestroy() {
+        PHBridge bridge = phHueSDK.getSelectedBridge();
+        if (bridge != null) {
+
+            if (phHueSDK.isHeartbeatEnabled(bridge)) {
+                phHueSDK.disableHeartbeat(bridge);
+            }
+
+            phHueSDK.disconnect(bridge);
+
+            super.onDestroy();
+        }
     }
 }

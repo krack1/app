@@ -121,9 +121,9 @@ public class MyApplicationActivity extends Activity {
         seekSat.setProgress(prefs_led_state.getInt(sat, 0));
         seekBri.setProgress(prefs_led_state.getInt(bri, 0));
 
-        Button randomButton;
-        randomButton = (Button) findViewById(R.id.buttonSend);
-        randomButton.setOnClickListener(new OnClickListener() {
+        Button sendButton;
+        sendButton = (Button) findViewById(R.id.buttonSend);
+        sendButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 setLights();

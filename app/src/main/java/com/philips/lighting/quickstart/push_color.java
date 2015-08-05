@@ -161,9 +161,9 @@ public class push_color extends Service {
     public void onDestroy() {
         PHBridge bridge = phHueSDK.getSelectedBridge();
         if (bridge != null) {
-            //if (phHueSDK.isHeartbeatEnabled(bridge)) {        //if close app disconnect bridge
-            //    phHueSDK.disableHeartbeat(bridge);
-            //}
+            if (phHueSDK.isHeartbeatEnabled(bridge)) {        //if close app disconnect bridge
+                phHueSDK.disableHeartbeat(bridge);
+            }
             phHueSDK.disconnect(bridge);
             super.onDestroy();
         }

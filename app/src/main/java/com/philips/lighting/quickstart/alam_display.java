@@ -222,4 +222,6 @@ public class alam_display extends Activity {
     }
 
 
+
+
 }

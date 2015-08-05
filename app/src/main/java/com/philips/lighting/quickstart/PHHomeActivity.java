@@ -244,7 +244,7 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
         if (listener !=null) {
             phHueSDK.getNotificationManager().unregisterSDKListener(listener);
         }
-        //phHueSDK.disableAllHeartbeat();
+        phHueSDK.disableAllHeartbeat();
     }
         
     @Override

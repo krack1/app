@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -46,7 +45,6 @@ public class AlamApplicationActivity extends Activity {
 
     SeekBar seekHue;
     SeekBar seekSat;
-    EditText textId;
     SeekBar seekBri;
 
     public String led;
@@ -104,13 +102,12 @@ public class AlamApplicationActivity extends Activity {
                 break;
         }
 */
-        textId = (EditText) findViewById(R.id.alam_led);
+
         seekHue = (SeekBar) findViewById(R.id.alam_hue);
         seekSat = (SeekBar) findViewById(R.id.alam_sat);
         seekBri = (SeekBar) findViewById(R.id.alam_bri);
 
         prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
-        textId.setText(prefs_led_state.getString(led, ""));
         seekHue.setProgress(prefs_led_state.getInt(hue, 0));
         seekSat.setProgress(prefs_led_state.getInt(sat, 0));
         seekBri.setProgress(prefs_led_state.getInt(bri, 0));
@@ -197,7 +194,6 @@ public class AlamApplicationActivity extends Activity {
 
         prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
         SharedPreferences.Editor ed = prefs_led_state.edit();
-        //ed.putString(led, textId.getText().toString());
         ed.putInt(hue, seekHue.getProgress());
         ed.putInt(sat, seekSat.getProgress());
         ed.putInt(bri, seekBri.getProgress());

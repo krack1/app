@@ -23,94 +23,74 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_random" android:paddingLeft="10dp" android:paddingRight="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="97dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LED"
-        android:id="@+id/textView6"
-        android:textSize="30dp"
-        android:layout_marginTop="41dp"
-        android:layout_below="@+id/textView1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/alam_led"
-        android:textSize="30dp"
-        android:layout_alignBottom="@+id/textView6"
-        android:layout_toRightOf="@+id/textView6"
-        android:layout_toLeftOf="@+id/buttonSend"
-        android:layout_toStartOf="@+id/buttonSend" />
+        android:layout_below="@+id/alam_bri"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="HUE"
         android:id="@+id/textView7"
-        android:layout_below="@+id/textView6"
+        android:textSize="30dp"
+        android:layout_below="@+id/select_led"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="30dp" />
+        android:layout_alignParentStart="true" />
 
     <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/alam_hue"
-        android:layout_below="@+id/textView7"
+        android:max="65535"
+        android:indeterminate="false"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView7"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:max="65535"
-        android:indeterminate="false" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SAT"
         android:id="@+id/textView8"
+        android:textSize="30dp"
         android:layout_below="@+id/alam_hue"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="30dp" />
+        android:layout_alignRight="@+id/textView7"
+        android:layout_alignEnd="@+id/textView7" />
 
     <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/alam_sat"
+        android:max="254"
         android:layout_below="@+id/textView8"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:max="254" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BRI"
         android:id="@+id/textView9"
+        android:textSize="30dp"
         android:layout_below="@+id/alam_sat"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="30dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/alam_bri"
+        android:max="254"
         android:layout_below="@+id/textView9"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:max="254" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -129,9 +109,9 @@
         android:layout_height="wrap_content"
         android:text="LED"
         android:id="@+id/select_led"
-        android:layout_alignTop="@+id/alam_led"
-        android:layout_toRightOf="@+id/alam_led"
-        android:layout_toEndOf="@+id/alam_led" />
+        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8" />
 
 
 </RelativeLayout>
