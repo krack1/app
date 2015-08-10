@@ -72,6 +72,10 @@
             android:name=".select_led_activity"
             android:label="@string/title_activity_select_led_activity" >
         </activity>
+        <activity
+            android:name=".led_settingActivity"
+            android:label="@string/title_activity_led_setting" >
+        </activity>
     </application>
 
 </manifest>

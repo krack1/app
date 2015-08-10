@@ -72,6 +72,10 @@
             android:name="com.philips.lighting.quickstart.select_led_activity"
             android:label="@string/title_activity_select_led_activity" >
         </activity>
+        <activity
+            android:name="com.philips.lighting.quickstart.led_settingActivity"
+            android:label="@string/title_activity_led_setting" >
+        </activity>
     </application>
 
 </manifest>

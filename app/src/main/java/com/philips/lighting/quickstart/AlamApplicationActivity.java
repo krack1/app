@@ -149,7 +149,7 @@ public class AlamApplicationActivity extends Activity {
                 startMainActivity_2();
                 break;
             case R.id.info_setting :
-
+                startMainActivity_4();
                 break;
             case R.id.alam_setting :
                 startMainActivity_3();
@@ -277,7 +277,7 @@ public class AlamApplicationActivity extends Activity {
         startActivity(intent);
     }
     public void startMainActivity_4() {
-        Intent intent = new Intent(getApplicationContext(), PHHomeActivity.class);
+        Intent intent = new Intent(getApplicationContext(), led_settingActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)

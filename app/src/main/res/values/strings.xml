@@ -42,4 +42,5 @@
     <string name="title_activity_alam_display">alam_display</string>
     <string name="title_activity_alam_application">AlamApplicationActivity</string>
     <string name="title_activity_select_led_activity">select_led_activity</string>
+    <string name="title_activity_led_setting">led_settingActivity</string>
 </resources>

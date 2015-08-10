@@ -35,6 +35,7 @@
     <string name="title_activity_alam_application">AlamApplicationActivity</string>
     <string name="title_activity_alam_display">alam_display</string>
     <string name="title_activity_led_display">led_display</string>
+    <string name="title_activity_led_setting">led_settingActivity</string>
     <string name="title_activity_push_color">push_color</string>
     <string name="title_activity_select_led_activity">select_led_activity</string>
     <string name="title_error">Error</string>

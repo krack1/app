@@ -148,7 +148,7 @@ public class MyApplicationActivity extends Activity {
     }
 
     private class TCPclient implements Runnable {
-        private final String serverIP = "10.255.253.190";  // ex: 192.168.0.100
+        private final String serverIP = "10.255.253.191";  // ex: 192.168.0.100
         private final int serverPort = 9999; // ex: 5555
         private String tcp_id;
         private int tcp_hue;
@@ -222,6 +222,7 @@ public class MyApplicationActivity extends Activity {
                 startMainActivity_2();
                 break;
             case R.id.info_setting :
+                startMainActivity_4();
 
                 break;
             case R.id.alam_setting :
@@ -353,7 +354,7 @@ public class MyApplicationActivity extends Activity {
         startActivity(intent);
     }
     public void startMainActivity_4() {
-        Intent intent = new Intent(getApplicationContext(), PHHomeActivity.class);
+        Intent intent = new Intent(getApplicationContext(),led_settingActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)

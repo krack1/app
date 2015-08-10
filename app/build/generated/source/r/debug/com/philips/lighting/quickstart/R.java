@@ -77,14 +77,15 @@ public final class R {
         public static final int activity_alam_application=0x7f030000;
         public static final int activity_alam_display=0x7f030001;
         public static final int activity_led_display=0x7f030002;
-        public static final int activity_main=0x7f030003;
-        public static final int activity_select_led_activity=0x7f030004;
-        public static final int bridgelistlinear=0x7f030005;
-        public static final int home=0x7f030006;
-        public static final int pushlink=0x7f030007;
-        public static final int row=0x7f030008;
-        public static final int selectbridge_item=0x7f030009;
-        public static final int selectled_item=0x7f03000a;
+        public static final int activity_led_setting=0x7f030003;
+        public static final int activity_main=0x7f030004;
+        public static final int activity_select_led_activity=0x7f030005;
+        public static final int bridgelistlinear=0x7f030006;
+        public static final int home=0x7f030007;
+        public static final int pushlink=0x7f030008;
+        public static final int row=0x7f030009;
+        public static final int selectbridge_item=0x7f03000a;
+        public static final int selectled_item=0x7f03000b;
     }
     public static final class menu {
         public static final int bridgelist=0x7f070000;
@@ -92,9 +93,10 @@ public final class R {
         public static final int menu_alam_application=0x7f070002;
         public static final int menu_alam_display=0x7f070003;
         public static final int menu_led_display=0x7f070004;
-        public static final int menu_push_color=0x7f070005;
-        public static final int menu_select_led_activity=0x7f070006;
-        public static final int start=0x7f070007;
+        public static final int menu_led_setting=0x7f070005;
+        public static final int menu_push_color=0x7f070006;
+        public static final int menu_select_led_activity=0x7f070007;
+        public static final int start=0x7f070008;
     }
     public static final class string {
         public static final int action_settings=0x7f060000;
@@ -126,16 +128,17 @@ public final class R {
         public static final int title_activity_alam_application=0x7f06001a;
         public static final int title_activity_alam_display=0x7f06001b;
         public static final int title_activity_led_display=0x7f06001c;
-        public static final int title_activity_push_color=0x7f06001d;
-        public static final int title_activity_select_led_activity=0x7f06001e;
-        public static final int title_error=0x7f06001f;
-        public static final int txt_click_random_button=0x7f060020;
-        public static final int txt_could_not_connect=0x7f060021;
-        public static final int txt_last_heartbeat=0x7f060022;
-        public static final int txt_pushlink=0x7f060023;
-        public static final int txt_sdk_version=0x7f060024;
-        public static final int txt_select_smartbridge=0x7f060025;
-        public static final int txt_selectbridges=0x7f060026;
+        public static final int title_activity_led_setting=0x7f06001d;
+        public static final int title_activity_push_color=0x7f06001e;
+        public static final int title_activity_select_led_activity=0x7f06001f;
+        public static final int title_error=0x7f060020;
+        public static final int txt_click_random_button=0x7f060021;
+        public static final int txt_could_not_connect=0x7f060022;
+        public static final int txt_last_heartbeat=0x7f060023;
+        public static final int txt_pushlink=0x7f060024;
+        public static final int txt_sdk_version=0x7f060025;
+        public static final int txt_select_smartbridge=0x7f060026;
+        public static final int txt_selectbridges=0x7f060027;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 
