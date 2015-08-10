@@ -43,4 +43,5 @@
     <string name="title_activity_alam_application">AlamApplicationActivity</string>
     <string name="title_activity_select_led_activity">select_led_activity</string>
     <string name="title_activity_led_setting">led_settingActivity</string>
+    <string name="title_activity_phhome_activity__find">PHHomeActivity_Find</string>
 </resources>

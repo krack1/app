@@ -15,6 +15,7 @@ public class led_settingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.app_name);
         setContentView(R.layout.activity_led_setting);
     }
 
@@ -45,7 +46,8 @@ public class led_settingActivity extends Activity {
     }
 
     public void startMainActivity_1() {
-        Intent intent = new Intent(getApplicationContext(), PHHomeActivity.class);
+
+        Intent intent = new Intent(getApplicationContext(), PHHomeActivity_Find.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)

@@ -27,7 +27,7 @@
 
             <TextView
                 android:id="@+id/cText"
-                android:layout_width="282dp"
+                android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:text="Text"
                 android:textAppearance="?android:attr/textAppearanceLarge"

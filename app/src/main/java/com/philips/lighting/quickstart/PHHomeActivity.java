@@ -50,6 +50,7 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.app_name);
         setContentView(R.layout.bridgelistlinear);
         
         // Gets an instance of the Hue SDK.
@@ -78,7 +79,8 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
             PHAccessPoint lastAccessPoint = new PHAccessPoint();
             lastAccessPoint.setIpAddress(lastIpAddress);
             lastAccessPoint.setUsername(lastUsername);
-           
+            Boolean a = phHueSDK.isAccessPointConnected(lastAccessPoint);
+            Log.d("what", a.toString());
             if (!phHueSDK.isAccessPointConnected(lastAccessPoint)) {
                PHWizardAlertDialog.getInstance().showProgressDialog(R.string.connecting, PHHomeActivity.this);
                phHueSDK.connect(lastAccessPoint);
@@ -131,7 +133,7 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
         public void onBridgeConnected(PHBridge b) {
             phHueSDK.setSelectedBridge(b);
             phHueSDK.enableHeartbeat(b, PHHueSDK.HB_INTERVAL);
-            phHueSDK.getLastHeartbeat().put(b.getResourceCache().getBridgeConfiguration() .getIpAddress(), System.currentTimeMillis());
+            phHueSDK.getLastHeartbeat().put(b.getResourceCache().getBridgeConfiguration().getIpAddress(), System.currentTimeMillis());
             prefs.setLastConnectedIPAddress(b.getResourceCache().getBridgeConfiguration().getIpAddress());
             prefs.setUsername(prefs.getUsername());
             PHWizardAlertDialog.getInstance().closeProgressDialog();

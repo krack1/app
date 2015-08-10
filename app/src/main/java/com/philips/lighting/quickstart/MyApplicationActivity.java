@@ -11,10 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
@@ -55,7 +53,6 @@ public class MyApplicationActivity extends Activity {
 
     SeekBar seekHue;
     SeekBar seekSat;
-    EditText textId;
     SeekBar seekBri;
 
     public String hue;
@@ -238,11 +235,11 @@ public class MyApplicationActivity extends Activity {
     public void setLights() {
 
         RelativeLayout m_RelativeLaout;
-        TextView hsb_result;
+        //TextView hsb_result;
 
 
         m_RelativeLaout = (RelativeLayout) findViewById(R.id.main_Relation);
-        hsb_result = (TextView) findViewById(R.id.result);
+        //hsb_result = (TextView) findViewById(R.id.result);
 
         PHBridge bridge = phHueSDK.getSelectedBridge();
 
@@ -253,8 +250,8 @@ public class MyApplicationActivity extends Activity {
         h = seekHue.getProgress();
         s = seekSat.getProgress();
         b = seekBri.getProgress();
-
-        hsb_result.append("h : " + h + " s : " + s + "b : " + b);
+        //print hue, sat, bri
+        //hsb_result.append("h : " + h + " s : " + s + "b : " + b);
 
         lightState.setOn(true);
         huetorgb(h, s, b);
@@ -330,7 +327,7 @@ public class MyApplicationActivity extends Activity {
     }
 
     public void startMainActivity_1() {
-        Intent intent = new Intent(getApplicationContext(), PHHomeActivity.class);
+        Intent intent = new Intent(getApplicationContext(), PHHomeActivity_Find.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)

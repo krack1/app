@@ -15,13 +15,16 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int image_clear=0x7f020001;
-        public static final int ok=0x7f020002;
-        public static final int phone=0x7f020003;
-        public static final int press_smartbridge=0x7f020004;
-        public static final int pushlink_image=0x7f020005;
-        public static final int sms=0x7f020006;
+        public static final int hue_seekbar=0x7f020000;
+        public static final int hue_seekbar2=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int image_clear=0x7f020003;
+        public static final int ok=0x7f020004;
+        public static final int phone=0x7f020005;
+        public static final int press_smartbridge=0x7f020006;
+        public static final int pushlink_image=0x7f020007;
+        public static final int seekbar_layout=0x7f020008;
+        public static final int sms=0x7f020009;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f080022;
@@ -84,13 +87,14 @@ public final class R {
         public static final int activity_led_display=0x7f030002;
         public static final int activity_led_setting=0x7f030003;
         public static final int activity_main=0x7f030004;
-        public static final int activity_select_led_activity=0x7f030005;
-        public static final int bridgelistlinear=0x7f030006;
-        public static final int home=0x7f030007;
-        public static final int pushlink=0x7f030008;
-        public static final int row=0x7f030009;
-        public static final int selectbridge_item=0x7f03000a;
-        public static final int selectled_item=0x7f03000b;
+        public static final int activity_phhome_activity__find=0x7f030005;
+        public static final int activity_select_led_activity=0x7f030006;
+        public static final int bridgelistlinear=0x7f030007;
+        public static final int home=0x7f030008;
+        public static final int pushlink=0x7f030009;
+        public static final int row=0x7f03000a;
+        public static final int selectbridge_item=0x7f03000b;
+        public static final int selectled_item=0x7f03000c;
     }
     public static final class menu {
         public static final int bridgelist=0x7f070000;
@@ -99,9 +103,10 @@ public final class R {
         public static final int menu_alam_display=0x7f070003;
         public static final int menu_led_display=0x7f070004;
         public static final int menu_led_setting=0x7f070005;
-        public static final int menu_push_color=0x7f070006;
-        public static final int menu_select_led_activity=0x7f070007;
-        public static final int start=0x7f070008;
+        public static final int menu_phhome_activity__find=0x7f070006;
+        public static final int menu_push_color=0x7f070007;
+        public static final int menu_select_led_activity=0x7f070008;
+        public static final int start=0x7f070009;
     }
     public static final class string {
         public static final int action_settings=0x7f060000;
@@ -134,16 +139,17 @@ public final class R {
         public static final int title_activity_alam_display=0x7f06001b;
         public static final int title_activity_led_display=0x7f06001c;
         public static final int title_activity_led_setting=0x7f06001d;
-        public static final int title_activity_push_color=0x7f06001e;
-        public static final int title_activity_select_led_activity=0x7f06001f;
-        public static final int title_error=0x7f060020;
-        public static final int txt_click_random_button=0x7f060021;
-        public static final int txt_could_not_connect=0x7f060022;
-        public static final int txt_last_heartbeat=0x7f060023;
-        public static final int txt_pushlink=0x7f060024;
-        public static final int txt_sdk_version=0x7f060025;
-        public static final int txt_select_smartbridge=0x7f060026;
-        public static final int txt_selectbridges=0x7f060027;
+        public static final int title_activity_phhome_activity__find=0x7f06001e;
+        public static final int title_activity_push_color=0x7f06001f;
+        public static final int title_activity_select_led_activity=0x7f060020;
+        public static final int title_error=0x7f060021;
+        public static final int txt_click_random_button=0x7f060022;
+        public static final int txt_could_not_connect=0x7f060023;
+        public static final int txt_last_heartbeat=0x7f060024;
+        public static final int txt_pushlink=0x7f060025;
+        public static final int txt_sdk_version=0x7f060026;
+        public static final int txt_select_smartbridge=0x7f060027;
+        public static final int txt_selectbridges=0x7f060028;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 
