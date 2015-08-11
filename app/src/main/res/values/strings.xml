@@ -44,4 +44,5 @@
     <string name="title_activity_select_led_activity">select_led_activity</string>
     <string name="title_activity_led_setting">led_settingActivity</string>
     <string name="title_activity_phhome_activity__find">PHHomeActivity_Find</string>
+    <string name="title_activity_setting__bridge">setting_Bridge</string>
 </resources>

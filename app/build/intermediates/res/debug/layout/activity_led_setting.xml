@@ -1,85 +1,17 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
-    android:orientation="vertical"
-    android:layout_height="fill_parent"
-    tools:context="com.philips.lighting.quickstart.led_settingActivity"
-    android:clickable="false"
-    android:longClickable="false"
-    android:weightSum="1"
-    android:baselineAligned="false"
-    android:focusable="false"
-    android:focusableInTouchMode="false"
-    android:measureWithLargestChild="false"
-    android:nestedScrollingEnabled="false">
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="10px"
-        android:paddingTop="@dimen/activity_vertical_margin">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="NAME"
-            android:id="@+id/textView6"
-            android:elegantTextHeight="false"
-            android:editable="false"
-            android:clickable="false"
-            android:nestedScrollingEnabled="false"
-            android:singleLine="false" />
-
-        <EditText
-            android:layout_width="139dp"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Name"
-            android:ems="10"
-            android:id="@+id/editText2"
-            android:layout_weight="3.95" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="37dp"
-            android:id="@+id/imageView2" />
-
-        <Button
-            android:layout_width="85dp"
-            android:layout_height="wrap_content"
-            android:text="Change"
-            android:id="@+id/button"
-            android:layout_weight="43.23" />
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:background="#ff4dbd7e"
-        android:layout_weight="0.005" /><![CDATA[
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.philips.lighting.quickstart.led_settingActivity">
 
 
-
-    TextView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textView10"
-        android:layout_gravity="center_horizontal" />
-
-    TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView11"
-        android:layout_gravity="right" />
-
-]]>
-</LinearLayout>
-<!-- From: file:/C:/Users/jaeho/AndroidStudioProjects/app/app/src/main/res/layout/activity_led_setting.xml -->
+        android:id="@+id/sList"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout><!-- From: file:/C:/Users/jaeho/AndroidStudioProjects/app/app/src/main/res/layout/activity_led_setting.xml -->

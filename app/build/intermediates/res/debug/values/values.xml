@@ -39,6 +39,7 @@
     <string name="title_activity_phhome_activity__find">PHHomeActivity_Find</string>
     <string name="title_activity_push_color">push_color</string>
     <string name="title_activity_select_led_activity">select_led_activity</string>
+    <string name="title_activity_setting__bridge">setting_Bridge</string>
     <string name="title_error">Error</string>
     <string name="txt_click_random_button">Insert that, you wnat change the color</string>
     <string name="txt_could_not_connect">No connection</string>

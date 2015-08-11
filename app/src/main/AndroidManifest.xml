@@ -80,6 +80,10 @@
             android:name=".PHHomeActivity_Find"
             android:label="@string/title_activity_phhome_activity__find" >
         </activity>
+        <activity
+            android:name=".setting_Bridge"
+            android:label="@string/title_activity_setting__bridge" >
+        </activity>
     </application>
 
 </manifest>
