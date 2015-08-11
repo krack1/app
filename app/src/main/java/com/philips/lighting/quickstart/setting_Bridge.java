@@ -2,18 +2,29 @@ package com.philips.lighting.quickstart;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import com.philips.lighting.hue.sdk.PHAccessPoint;
+import com.philips.lighting.data.HueSharedPreferences;
+import com.philips.lighting.hue.listener.PHBridgeConfigurationListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
+import com.philips.lighting.hue.sdk.bridge.impl.PHBridgeResourcesCacheImpl;
+import com.philips.lighting.model.PHBridge;
+import com.philips.lighting.model.PHBridgeConfiguration;
+import com.philips.lighting.model.PHHueError;
+
+import java.util.List;
+import java.util.Map;
 
 
 public class setting_Bridge extends Activity {
     private PHHueSDK phHueSDK;
+    private HueSharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,20 +33,58 @@ public class setting_Bridge extends Activity {
 
         phHueSDK = PHHueSDK.create();
 
-        EditText bridge_name;
+
+        final EditText bridge_name;
+        TextView ip_name;
+        TextView mask_name;
+        TextView gateway_name;
+
         bridge_name = (EditText) findViewById(R.id.get_name);
+        ip_name = (TextView) findViewById(R.id.get_ip);
+        mask_name = (TextView) findViewById(R.id.get_mask);
+        gateway_name = (TextView) findViewById(R.id.get_gateway);
 
-        PHAccessPoint accessPoint = new PHAccessPoint();
+        //set of bridge info
+        final PHBridge bridge = phHueSDK.getSelectedBridge();
+        final PHBridgeResourcesCacheImpl cache = (PHBridgeResourcesCacheImpl)bridge.getResourceCache();
+        final PHBridgeConfiguration newBridgeConfig = cache.getBridgeConfiguration();
 
+        Log.i("test", "id :" + newBridgeConfig.getName() + "," + newBridgeConfig.getIpAddress() + "," + newBridgeConfig.getNetmask() + "," + newBridgeConfig.getGateway());
 
-        bridge_name.setText(accessPoint.getBridgeId());
+        bridge_name.setText(newBridgeConfig.getName());
+        ip_name.setText(newBridgeConfig.getIpAddress());
+        mask_name.setText(newBridgeConfig.getNetmask());
+        gateway_name.setText(newBridgeConfig.getGateway());
+
 
         Button change_button;
         change_button = (Button) findViewById(R.id.change_name);
         change_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final PHBridgeConfigurationListener listner = new PHBridgeConfigurationListener() {
+                    @Override
+                    public void onReceivingConfiguration(PHBridgeConfiguration phBridgeConfiguration) {
 
+                    }
+
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(int i, String s) {
+
+                    }
+
+                    @Override
+                    public void onStateUpdate(Map<String, String> map, List<PHHueError> list) {
+
+                    }
+                };
+                newBridgeConfig.setName(bridge_name.getText().toString());
+                bridge.updateBridgeConfigurations(newBridgeConfig, listner);
             }
 
         });

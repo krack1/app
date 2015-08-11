@@ -52,7 +52,7 @@
             android:layout_width="85dp"
             android:layout_height="wrap_content"
             android:text="Change"
-            android:id="@+id/button"
+            android:id="@+id/change_name"
             android:layout_weight="43.23" />
     </LinearLayout>
 

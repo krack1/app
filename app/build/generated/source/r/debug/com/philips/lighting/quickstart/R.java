@@ -40,12 +40,12 @@ public final class R {
         public static final int bridge_ip=0x7f080031;
         public static final int bridge_list=0x7f080027;
         public static final int bridge_mac=0x7f080030;
-        public static final int button=0x7f08001e;
         public static final int buttonSave=0x7f080002;
         public static final int buttonSend=0x7f080010;
         public static final int cCheck=0x7f08002f;
         public static final int cImage=0x7f08002d;
         public static final int cText=0x7f08002e;
+        public static final int change_name=0x7f08001e;
         public static final int check_led=0x7f08001a;
         public static final int countdownPB=0x7f08002c;
         public static final int descriptionTextview=0x7f08002a;
