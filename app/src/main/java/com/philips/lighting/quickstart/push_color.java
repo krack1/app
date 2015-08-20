@@ -23,7 +23,7 @@ public class push_color extends Service {
     public static final String TAG = "QuickStart";
     public SharedPreferences prefs_led_state;
     public int count = 0;
-    public String push;
+    public String app;
     private String led;
     private String hue;
     private String sat;
@@ -42,12 +42,12 @@ public class push_color extends Service {
     }
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        push = intent.getExtras().getString("push");
+        app = intent.getExtras().getString("app");
 
-        //led = "led_"+push;
-        hue = "hue_"+push;
-        sat = "sat_"+push;
-        bri = "bri_"+push;
+        //led = "led_"+app;
+        hue = "hue_"+app;
+        sat = "sat_"+app;
+        bri = "bri_"+app;
         /*
         switch (push) {
             case "PHONE":
@@ -97,7 +97,7 @@ public class push_color extends Service {
 
         for(PHLight lights : allLights) {
 
-            prefs_led_state = getSharedPreferences(push, MODE_PRIVATE);
+            prefs_led_state = getSharedPreferences(app, MODE_PRIVATE);
             light = prefs_led_state.getString("check"+lights.getIdentifier(), "0");
 
             prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);

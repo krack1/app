@@ -57,10 +57,10 @@ public class alam_display extends Activity {
         aListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 ListData mData = aAdapter.aListData.get(position);
-                Toast.makeText(alam_display.this, mData.mTitle, Toast.LENGTH_SHORT).show();
+                Toast.makeText(alam_display.this, mData.mDate, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), AlamApplicationActivity.class);
-                intent.putExtra("app", mData.mTitle);
+                intent.putExtra("app", mData.mDate);
                 startActivity(intent);
 
 

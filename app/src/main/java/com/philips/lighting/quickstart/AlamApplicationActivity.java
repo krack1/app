@@ -83,6 +83,7 @@ public class AlamApplicationActivity extends Activity {
         hue = "hue_"+app;
         sat = "sat_"+app;
         bri = "bri_"+app;
+        Log.i("test", led + hue + sat + bri);
 
         /*
         switch (app) {

@@ -61,7 +61,7 @@ public class ServiceReceiver extends BroadcastReceiver {
 			if ("android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction())) {
 				Log.i(TAG, "receive sms");
 				Intent testActivityIntent = new Intent(context, push_color.class);
-				intent.putExtra("push", "SMS");
+				intent.putExtra("app", "SMS");
 				testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
 				context.startService(testActivityIntent);

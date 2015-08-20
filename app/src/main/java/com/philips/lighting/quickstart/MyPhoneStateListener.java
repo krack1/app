@@ -29,7 +29,7 @@ public class MyPhoneStateListener extends PhoneStateListener {
 
 				Toast.makeText(ServiceReceiver.context, "incoming call", Toast.LENGTH_SHORT).show();
 				Intent testActivityIntent = new Intent(ServiceReceiver.context, push_color.class);
-			testActivityIntent.putExtra("push", "PHONE");
+			testActivityIntent.putExtra("app", "PHONE");
 				testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				testActivityIntent.addFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
 				ServiceReceiver.context.startService(testActivityIntent);
