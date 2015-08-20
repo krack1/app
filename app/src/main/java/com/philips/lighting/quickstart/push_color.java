@@ -33,47 +33,28 @@ public class push_color extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
         phHueSDK = PHHueSDK.create();
-
-
-
-
     }
-    public int onStartCommand(Intent intent, int flags, int startId) {
 
+    public int onStartCommand(Intent intent, int flags, int startId) {
         app = intent.getExtras().getString("app");
 
         //led = "led_"+app;
         hue = "hue_"+app;
         sat = "sat_"+app;
         bri = "bri_"+app;
-        /*
-        switch (push) {
-            case "PHONE":
-                led = "led_PHONE";
-                hue = "hue_PHONE";
-                sat = "sat_PHONE";
-                bri = "bri_PHONE";
-                break;
 
-            case "SMS":
-                led = "led_SMS";
-                hue = "hue_SMS";
-                sat = "sat_SMS";
-                bri = "bri_SMS";
-                break;
-        }
-        */
 
         try {
-            if(ServiceReceiver.act == false) {
+            if(ServiceReceiver.act == false || NotificationReceive.act2 == false) {
+                Log.i(TAG, "3");
                 setLights();
             }
             else{
                 return 0;
             }
             ServiceReceiver.act = true;
+            NotificationReceive.act2 = true;
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -98,10 +79,13 @@ public class push_color extends Service {
         for(PHLight lights : allLights) {
 
             prefs_led_state = getSharedPreferences(app, MODE_PRIVATE);
-            light = prefs_led_state.getString("check"+lights.getIdentifier(), "0");
+            light = prefs_led_state.getString("check" + lights.getIdentifier(), "0");
 
             prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
-
+            int k = prefs_led_state.getInt(hue, 0);
+            int q = prefs_led_state.getInt(bri, 0);
+            int j = prefs_led_state.getInt(sat, 0);
+            Log.i(TAG, k+" "+q+" "+j);
             lightState.setHue(prefs_led_state.getInt(hue, 0));
             lightState.setBrightness(prefs_led_state.getInt(bri, 0));
             lightState.setSaturation(prefs_led_state.getInt(sat, 0));
@@ -113,7 +97,7 @@ public class push_color extends Service {
                 bridge.updateLightState(light, lightState, listener_a);
             }
         }
-        Thread.sleep(10000);
+        Thread.sleep(3000);
 
         List<PHLight> allLightss = bridge.getResourceCache().getAllLights();
 
