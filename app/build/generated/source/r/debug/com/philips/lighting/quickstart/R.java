@@ -35,7 +35,7 @@ public final class R {
         public static final int alam_sat=0x7f080008;
         public static final int alam_setting=0x7f08003a;
         public static final int ans=0x7f08000a;
-        public static final int back_start=0x7f080038;
+        public static final int back_start=0x7f080039;
         public static final int bri_seekBar=0x7f080016;
         public static final int bridge_ip=0x7f080031;
         public static final int bridge_list=0x7f080027;
@@ -50,7 +50,7 @@ public final class R {
         public static final int countdownPB=0x7f08002c;
         public static final int descriptionTextview=0x7f08002a;
         public static final int empty_list_view=0x7f080028;
-        public static final int find_new_bridge=0x7f080037;
+        public static final int find_new_bridge=0x7f080038;
         public static final int get_gateway=0x7f080025;
         public static final int get_ip=0x7f080021;
         public static final int get_mask=0x7f080023;
@@ -60,7 +60,7 @@ public final class R {
         public static final int imageView1=0x7f08002b;
         public static final int imageView2=0x7f08001d;
         public static final int info_setting=0x7f08003b;
-        public static final int led_setting=0x7f080039;
+        public static final int led_setting=0x7f080037;
         public static final int linear1=0x7f080026;
         public static final int mDate=0x7f080034;
         public static final int mImage=0x7f080032;
@@ -143,24 +143,25 @@ public final class R {
         public static final int search_progress=0x7f060015;
         public static final int searching_for_bridges=0x7f060016;
         public static final int second_page=0x7f060017;
-        public static final int setting=0x7f060018;
-        public static final int third_page=0x7f060019;
-        public static final int title_activity_alam_application=0x7f06001a;
-        public static final int title_activity_alam_display=0x7f06001b;
-        public static final int title_activity_led_display=0x7f06001c;
-        public static final int title_activity_led_setting=0x7f06001d;
-        public static final int title_activity_phhome_activity__find=0x7f06001e;
-        public static final int title_activity_push_color=0x7f06001f;
-        public static final int title_activity_select_led_activity=0x7f060020;
-        public static final int title_activity_setting__bridge=0x7f060021;
-        public static final int title_error=0x7f060022;
-        public static final int txt_click_random_button=0x7f060023;
-        public static final int txt_could_not_connect=0x7f060024;
-        public static final int txt_last_heartbeat=0x7f060025;
-        public static final int txt_pushlink=0x7f060026;
-        public static final int txt_sdk_version=0x7f060027;
-        public static final int txt_select_smartbridge=0x7f060028;
-        public static final int txt_selectbridges=0x7f060029;
+        public static final int service_name=0x7f060018;
+        public static final int setting=0x7f060019;
+        public static final int third_page=0x7f06001a;
+        public static final int title_activity_alam_application=0x7f06001b;
+        public static final int title_activity_alam_display=0x7f06001c;
+        public static final int title_activity_led_display=0x7f06001d;
+        public static final int title_activity_led_setting=0x7f06001e;
+        public static final int title_activity_phhome_activity__find=0x7f06001f;
+        public static final int title_activity_push_color=0x7f060020;
+        public static final int title_activity_select_led_activity=0x7f060021;
+        public static final int title_activity_setting__bridge=0x7f060022;
+        public static final int title_error=0x7f060023;
+        public static final int txt_click_random_button=0x7f060024;
+        public static final int txt_could_not_connect=0x7f060025;
+        public static final int txt_last_heartbeat=0x7f060026;
+        public static final int txt_pushlink=0x7f060027;
+        public static final int txt_sdk_version=0x7f060028;
+        public static final int txt_select_smartbridge=0x7f060029;
+        public static final int txt_selectbridges=0x7f06002a;
     }
     public static final class style {
         /**  API 11 theme customizations can go here. 

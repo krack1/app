@@ -227,6 +227,9 @@ public class PHHomeActivity_Find extends Activity implements OnItemClickListener
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.led_setting :
+                startMainActivity_2();
+                break;
             case R.id.find_new_bridge:
                 doBridgeSearch();
                 break;
@@ -274,6 +277,15 @@ public class PHHomeActivity_Find extends Activity implements OnItemClickListener
     // Starting the main activity this way, prevents the PushLink Activity being shown when pressing the back button.
     public void startMainActivity() {
         Intent intent = new Intent(getApplicationContext(),led_display.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+            intent.addFlags(0x8000); // equal to Intent.FLAG_ACTIVITY_CLEAR_TASK which is only available from API level 11
+        startActivity(intent);
+    }
+
+    public void startMainActivity_2() {
+        Intent intent = new Intent(getApplicationContext(), led_display.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)

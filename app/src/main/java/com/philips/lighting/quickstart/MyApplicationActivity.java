@@ -145,7 +145,7 @@ public class MyApplicationActivity extends Activity {
     }
 
     private class TCPclient implements Runnable {
-        private final String serverIP = "10.255.253.190";  // ex: 192.168.0.100
+        private final String serverIP = "192.168.0.6";  // ex: 192.168.0.100
         private final int serverPort = 9999; // ex: 5555
         private String tcp_id;
         private int tcp_hue;

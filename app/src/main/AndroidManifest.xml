@@ -14,13 +14,6 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
 
-    <android:uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
-    <android:uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -56,6 +49,14 @@
             android:label="@string/title_activity_push_color" >
         </service>
 
+        <service android:name=".NotificationListener"
+            android:label="@string/service_name"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".led_display"
             android:label="@string/title_activity_led_display" >
@@ -84,6 +85,8 @@
             android:name=".setting_Bridge"
             android:label="@string/title_activity_setting__bridge" >
         </activity>
+
     </application>
+
 
 </manifest>

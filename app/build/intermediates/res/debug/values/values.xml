@@ -30,6 +30,7 @@
     <string name="search_progress">Searching ...</string>
     <string name="searching_for_bridges">Searching for Bridges</string>
     <string name="second_page">알림</string>
+    <string name="service_name">NotificationService</string>
     <string name="setting"> setting</string>
     <string name="third_page">설정</string>
     <string name="title_activity_alam_application">AlamApplicationActivity</string>
