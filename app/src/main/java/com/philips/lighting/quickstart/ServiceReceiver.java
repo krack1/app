@@ -58,7 +58,7 @@ public class ServiceReceiver extends BroadcastReceiver {
 			MyPhoneStateListener phoneListener = new MyPhoneStateListener();
 			TelephonyManager telephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
-			if ("android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction())) {
+			if ("android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction())) {	//SMS signal catch
 				Log.i(TAG, "receive sms");
 				Intent testActivityIntent = new Intent(context, push_color.class);
 				intent.putExtra("app", "SMS");

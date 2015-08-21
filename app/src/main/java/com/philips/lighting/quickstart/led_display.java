@@ -59,7 +59,7 @@ public class led_display extends Activity {
 
         List<PHLight> myArrayData = new ArrayList<PHLight>();
 
-
+        //List sorted led
         for(int i = 0; i< allLights.size(); i++) {
             myArrayData.add(allLights.get(i));
         }

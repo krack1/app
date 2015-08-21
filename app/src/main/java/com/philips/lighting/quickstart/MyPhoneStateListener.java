@@ -25,7 +25,7 @@ public class MyPhoneStateListener extends PhoneStateListener {
 							+ incomingNumber);
 			break;
 			*/
-		case TelephonyManager.CALL_STATE_RINGING:
+		case TelephonyManager.CALL_STATE_RINGING: // call signal catch
 
 				Toast.makeText(ServiceReceiver.context, "incoming call", Toast.LENGTH_SHORT).show();
 				Intent testActivityIntent = new Intent(ServiceReceiver.context, push_color.class);

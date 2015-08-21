@@ -22,7 +22,6 @@ public class push_color extends Service {
     private PHHueSDK phHueSDK;
     public static final String TAG = "QuickStart";
     public SharedPreferences prefs_led_state;
-    public int count = 0;
     public String app;
     private String led;
     private String hue;
@@ -46,8 +45,7 @@ public class push_color extends Service {
 
 
         try {
-            if(ServiceReceiver.act == false || NotificationReceive.act2 == false) {
-                Log.i(TAG, "3");
+            if(ServiceReceiver.act == false || NotificationReceive.act2 == false) { // if call, sms ServiceReceiver but if app NotificationReceive
                 setLights();
             }
             else{
@@ -76,16 +74,13 @@ public class push_color extends Service {
 
         List<PHLight> allLights = bridge.getResourceCache().getAllLights();
 
+        //change led state setting alam
         for(PHLight lights : allLights) {
 
             prefs_led_state = getSharedPreferences(app, MODE_PRIVATE);
             light = prefs_led_state.getString("check" + lights.getIdentifier(), "0");
 
             prefs_led_state = getSharedPreferences("ledFile", MODE_PRIVATE);
-            int k = prefs_led_state.getInt(hue, 0);
-            int q = prefs_led_state.getInt(bri, 0);
-            int j = prefs_led_state.getInt(sat, 0);
-            Log.i(TAG, k+" "+q+" "+j);
             lightState.setHue(prefs_led_state.getInt(hue, 0));
             lightState.setBrightness(prefs_led_state.getInt(bri, 0));
             lightState.setSaturation(prefs_led_state.getInt(sat, 0));
@@ -99,6 +94,7 @@ public class push_color extends Service {
         }
         Thread.sleep(3000);
 
+        //return to orignal setting
         List<PHLight> allLightss = bridge.getResourceCache().getAllLights();
 
         for(PHLight lightss : allLightss) {

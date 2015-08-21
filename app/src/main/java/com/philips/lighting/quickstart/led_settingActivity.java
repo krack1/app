@@ -41,6 +41,7 @@ public class led_settingActivity extends Activity {
 
         sAdapter.addItem("BRIDGE");
         sAdapter.addItem("LIGHT");
+        sAdapter.addItem("NOTIFICATION");
 
         sListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -58,6 +59,10 @@ public class led_settingActivity extends Activity {
                         intent.putExtra("name", mData.mTitle);
                         startActivity(intent);
                         break;
+                    case "NOTIFICATION":
+                        intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+                        startActivity(intent);
+
 
                 }
 

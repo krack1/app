@@ -18,11 +18,11 @@ public class ListData_checkbox {
     public CheckBox mCheck;
 
 
-    public static final Comparator<ListData> ALPHA_COMPARATOR = new Comparator<ListData>() {
+    public static final Comparator<ListData_checkbox> ALPHA_COMPARATOR = new Comparator<ListData_checkbox>() {
         private final Collator sCollator = Collator.getInstance();
 
         @Override
-        public int compare(ListData mListDate_1, ListData mListDate_2) {
+        public int compare(ListData_checkbox mListDate_1, ListData_checkbox mListDate_2) {
             return sCollator.compare(mListDate_1.mTitle, mListDate_2.mTitle);
         }
     };

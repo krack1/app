@@ -101,7 +101,7 @@ public class select_led_activity extends Activity {
                             Toast.LENGTH_SHORT).show();
 
                     cCustomAdapter.setChecked(position);
-                    // Data 변경시 호출 Adapter에 Data 변경 사실을 알려줘서 Update 함.
+                    // when change the data update adpater
                     cCustomAdapter.notifyDataSetChanged();
 
                 }

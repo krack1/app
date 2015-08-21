@@ -23,8 +23,9 @@ public class NotificationReceive extends NotificationListenerService {
     }
     public void onDestroy() {
         super.onDestroy();
-    }
 
+    }
+    //receive the message in notification action
     public void onNotificationPosted(StatusBarNotification sbn) {
         Log.i(TAG, "**********  onNotificationPosted");
         Log.i(TAG, "ID :" + sbn.getId() + "\t" + sbn.getNotification().tickerText + "\t" + sbn.getPackageName());
