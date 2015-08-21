@@ -77,7 +77,7 @@ public class led_display extends Activity {
         for (PHLight light : myArrayData) {
 
 
-            mAdapter.addItem(getResources().getDrawable(R.drawable.ok), light.getIdentifier(), light.getName() );
+            mAdapter.addItem(getResources().getDrawable(R.drawable.ok), light.getIdentifier(), light.getName());
         }
 
 /*

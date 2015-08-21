@@ -92,6 +92,10 @@
             android:name="com.philips.lighting.quickstart.setting_Bridge"
             android:label="@string/title_activity_setting__bridge" >
         </activity>
+        <activity
+            android:name="com.philips.lighting.quickstart.light_settingActivity"
+            android:label="@string/title_activity_light_setting" >
+        </activity>
     </application>
 
 </manifest>

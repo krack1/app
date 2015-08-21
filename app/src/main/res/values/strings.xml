@@ -46,5 +46,6 @@
     <string name="title_activity_phhome_activity__find">PHHomeActivity_Find</string>
     <string name="title_activity_setting__bridge">setting_Bridge</string>
     <string name="service_name">NotificationService</string>
+    <string name="title_activity_light_setting">light_settingActivity</string>
 
 </resources>

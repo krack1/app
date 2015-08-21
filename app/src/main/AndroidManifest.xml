@@ -72,6 +72,7 @@
             android:name=".alam_display"
             android:label="@string/title_activity_alam_display" >
         </activity>
+
         <activity
             android:name=".AlamApplicationActivity"
             android:label="@string/title_activity_alam_application" >
@@ -92,7 +93,10 @@
             android:name=".setting_Bridge"
             android:label="@string/title_activity_setting__bridge" >
         </activity>
-
+        <activity
+            android:name=".light_settingActivity"
+            android:label="@string/title_activity_light_setting" >
+        </activity>
     </application>
 
 </manifest>

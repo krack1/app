@@ -37,6 +37,7 @@
     <string name="title_activity_alam_display">alam_display</string>
     <string name="title_activity_led_display">led_display</string>
     <string name="title_activity_led_setting">led_settingActivity</string>
+    <string name="title_activity_light_setting">light_settingActivity</string>
     <string name="title_activity_phhome_activity__find">PHHomeActivity_Find</string>
     <string name="title_activity_push_color">push_color</string>
     <string name="title_activity_select_led_activity">select_led_activity</string>

@@ -55,8 +55,7 @@ public class led_settingActivity extends Activity {
                         startActivity(intent);
                         break;
                     case "LIGHT":
-                        intent = new Intent(getApplicationContext(), MyApplicationActivity.class);
-                        intent.putExtra("name", mData.mTitle);
+                        intent = new Intent(getApplicationContext(), light_settingActivity.class);
                         startActivity(intent);
                         break;
                     case "NOTIFICATION":
