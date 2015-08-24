@@ -74,8 +74,11 @@ public class push_color extends Service {
 
         List<PHLight> allLights = bridge.getResourceCache().getAllLights();
 
+        Log.i(TAG, allLights.toString());
+
         //change led state setting alam
         for(PHLight lights : allLights) {
+            Log.i(TAG, lights.toString());
 
             prefs_led_state = getSharedPreferences(app, MODE_PRIVATE);
             light = prefs_led_state.getString("check" + lights.getIdentifier(), "0");

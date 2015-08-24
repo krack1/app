@@ -96,6 +96,14 @@
             android:name="com.philips.lighting.quickstart.light_settingActivity"
             android:label="@string/title_activity_light_setting" >
         </activity>
+        <activity
+            android:name="com.philips.lighting.quickstart.external_display"
+            android:label="@string/title_activity_external_display" >
+        </activity>
+        <activity
+            android:name="com.philips.lighting.quickstart.external_MyApplicationActivity"
+            android:label="@string/title_activity_external__my_application" >
+        </activity>
     </application>
 
 </manifest>

@@ -285,7 +285,7 @@ public class PHHomeActivity_Find extends Activity implements OnItemClickListener
     }
 
     public void startMainActivity_2() {
-        Intent intent = new Intent(getApplicationContext(), led_display.class);
+        Intent intent = new Intent(getApplicationContext(), external_display.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)

@@ -72,7 +72,6 @@
             android:name=".alam_display"
             android:label="@string/title_activity_alam_display" >
         </activity>
-
         <activity
             android:name=".AlamApplicationActivity"
             android:label="@string/title_activity_alam_application" >
@@ -96,6 +95,14 @@
         <activity
             android:name=".light_settingActivity"
             android:label="@string/title_activity_light_setting" >
+        </activity>
+        <activity
+            android:name=".external_display"
+            android:label="@string/title_activity_external_display" >
+        </activity>
+        <activity
+            android:name=".external_MyApplicationActivity"
+            android:label="@string/title_activity_external__my_application" >
         </activity>
     </application>
 

@@ -47,5 +47,7 @@
     <string name="title_activity_setting__bridge">setting_Bridge</string>
     <string name="service_name">NotificationService</string>
     <string name="title_activity_light_setting">light_settingActivity</string>
+    <string name="title_activity_external_display">external_display</string>
+    <string name="title_activity_external__my_application">external_MyApplicationActivity</string>
 
 </resources>

@@ -3,9 +3,11 @@ package com.philips.lighting.quickstart;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +37,7 @@ public class led_display extends Activity {
     public static final String TAG = "QuickStart";
     private ListView mListView = null;
     private LedListAdapter mAdapter = null;
+    public SharedPreferences prefs_led_state;
 
 
 
@@ -74,11 +77,19 @@ public class led_display extends Activity {
 
         Collections.sort(myArrayData, myComparator);
 
+
+        prefs_led_state = getSharedPreferences("ledstate", MODE_PRIVATE);
+        SharedPreferences.Editor ed = prefs_led_state.edit();
         for (PHLight light : myArrayData) {
 
+            ed.putString("id_" + light.getIdentifier(), light.getIdentifier());
+            ed.putString("name_" + light.getIdentifier(), light.getName());
 
+            Log.i(TAG, "id_" + light.getIdentifier() + ", " + light.getIdentifier());
+            Log.i(TAG, "name_"+light.getIdentifier()+", "+light.getName());
             mAdapter.addItem(getResources().getDrawable(R.drawable.ok), light.getIdentifier(), light.getName());
         }
+        ed.commit();
 
 /*
         mAdapter.addItem(null,

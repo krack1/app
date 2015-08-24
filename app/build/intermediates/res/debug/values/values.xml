@@ -35,6 +35,8 @@
     <string name="third_page">설정</string>
     <string name="title_activity_alam_application">AlamApplicationActivity</string>
     <string name="title_activity_alam_display">alam_display</string>
+    <string name="title_activity_external__my_application">external_MyApplicationActivity</string>
+    <string name="title_activity_external_display">external_display</string>
     <string name="title_activity_led_display">led_display</string>
     <string name="title_activity_led_setting">led_settingActivity</string>
     <string name="title_activity_light_setting">light_settingActivity</string>

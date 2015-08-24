@@ -91,33 +91,6 @@ public class MyApplicationActivity extends Activity {
         hue = "hue"+name;
         sat = "sat"+name;
         bri = "bri"+name;
-        /*
-        switch (name) {
-            case "1":
-                hue = "hue1";
-                sat = "sat1";
-                bri = "bri1";
-                break;
-
-            case "2":
-                hue = "hue2";
-                sat = "sat2";
-                bri = "bri2";
-                break;
-
-            case "3":
-                hue = "hue3";
-                sat = "sat3";
-                bri = "bri3";
-                break;
-            case "4":
-                hue = "hue4";
-                sat = "sat4";
-                bri = "bri4";
-                break;
-        }
-        */
-
 
         seekHue = (SeekBar) findViewById(R.id.hue_seekBar);
         seekSat = (SeekBar) findViewById(R.id.sat_seekBar);
