@@ -144,9 +144,9 @@ public class external_MyApplicationActivity extends Activity {
 
                     obj.put("light", tcp_id);
                     obj.put("on", new Boolean(tcp_on));
-                    obj.put("sat", new  Integer(tcp_hue));
+                    obj.put("sat", new  Integer(tcp_sat));
                     obj.put("bri", new Integer(tcp_bri));
-                    obj.put("hue", new Integer(tcp_sat));
+                    obj.put("hue", new Integer(tcp_hue));
 
 
                     Log.d("TCP", "C: Sending: '" + obj + "'");

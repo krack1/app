@@ -23,15 +23,6 @@ import com.philips.lighting.model.PHHueError;
 import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHLightState;
 
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.util.List;
 import java.util.Map;
 
@@ -109,71 +100,9 @@ public class MyApplicationActivity extends Activity {
                 setLights();
 
                 //socket program is not working in main Thread so make Thread
-                TCPclient tp = new TCPclient(name, h, s, b);
-                Thread td = new Thread(tp);
-                td.start();
             }
 
         });
-    }
-
-    private class TCPclient implements Runnable {
-        private final String serverIP = "192.168.0.6";  // ex: 192.168.0.100
-        private final int serverPort = 9999; // ex: 5555
-        private String tcp_id;
-        private int tcp_hue;
-        private int tcp_sat;
-        private int tcp_bri;
-
-        //private String return_msg;
-
-        public TCPclient(String tcp_id, int tcp_hue, int tcp_sat, int tcp_bri) {
-            this.tcp_id = tcp_id;
-            this.tcp_hue = tcp_hue;
-            this.tcp_sat = tcp_sat;
-            this.tcp_bri = tcp_bri;
-        }
-
-        @Override
-        public void run() {
-            // TODO Auto-generated method stub
-            try {
-
-                InetAddress serverAddr = InetAddress.getByName(serverIP);
-
-                Log.d("TCP", "C: Connecting...");
-
-                Socket socket = new Socket(serverIP, serverPort);
-
-                try {
-                    JSONObject obj = new JSONObject();
-
-                    obj.put("light", tcp_id);
-                    obj.put("sat", new  Integer(tcp_hue));
-                    obj.put("bri", new Integer(tcp_bri));
-                    obj.put("hue", new Integer(tcp_sat));
-
-
-                    Log.d("TCP", "C: Sending: '" + obj + "'");
-                    PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-
-                    out.println(obj);
-                    Log.d("TCP", "C: Sent.");
-                    Log.d("TCP", "C: Done.");
-
-                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    return_msg = in.readLine();
-
-                    Log.d("TCP", "C: Server send to me this message -->" + return_msg);
-                } catch (Exception e) {
-                    Log.e("TCP", "C: Error1", e);
-                } finally {
-                    socket.close();
-                }
-            } catch (Exception e) {
-                Log.e("TCP", e.getMessage(), e);
-            }
-        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
