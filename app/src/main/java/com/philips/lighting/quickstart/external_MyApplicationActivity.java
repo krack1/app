@@ -3,6 +3,7 @@ package com.philips.lighting.quickstart;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,15 +21,6 @@ import com.philips.lighting.model.PHBridgeResource;
 import com.philips.lighting.model.PHHueError;
 import com.philips.lighting.model.PHLight;
 
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.util.List;
 import java.util.Map;
 
@@ -108,7 +100,7 @@ public class external_MyApplicationActivity extends Activity {
 
         });
     }
-
+/*
     private class TCPclient implements Runnable {
         private final String serverIP = "192.168.0.6";  // ex: 192.168.0.100
         private final int serverPort = 9999; // ex: 5555
@@ -170,7 +162,7 @@ public class external_MyApplicationActivity extends Activity {
             }
         }
     }
-
+*/
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.w(TAG, "Inflating home menu");
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -231,19 +223,29 @@ public class external_MyApplicationActivity extends Activity {
         // String validState = lightState.validateState();
         if(b == 0) {
             on = false;
+            String url = "https://192.168.0.6:8000/hue_to_python/led_control/off/"+name;
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         }
         else {
             on = true;
+            String url = "https://192.168.0.6:8000/hue_to_python/led_control/putState/"+name+"/"+h+"/"+s+"/"+b+"/"+on;
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         }
+        /*
         //socket program is not working in main Thread so make Thread
         TCPclient tp = new TCPclient(name, on, h, s, b);
         Thread td = new Thread(tp);
         td.start();
+        */
+
 
         //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.
-
-
     }
+
     // If you want to handle the response from the bridge, create a PHLightListener object.
     PHLightListener listener = new PHLightListener() {
 
