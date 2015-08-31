@@ -59,6 +59,8 @@ public class led_display extends Activity {
         PHBridge bridge = phHueSDK.getSelectedBridge();
 
         List<PHLight> allLights = bridge.getResourceCache().getAllLights();
+        //List<PHLight> newLights = bridge.findNewLights();
+
 
         List<PHLight> myArrayData = new ArrayList<PHLight>();
 

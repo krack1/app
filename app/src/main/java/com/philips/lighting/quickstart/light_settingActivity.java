@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.philips.lighting.data.HueSharedPreferences;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 
 
@@ -16,6 +17,7 @@ public class light_settingActivity extends Activity {
     public static final String TAG = "QuickStart";
     private ListView fListView = null;
     public LedListAdapter fAdapter;
+    public HueSharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,9 @@ public class light_settingActivity extends Activity {
         fAdapter = new LedListAdapter(this);
         fListView.setAdapter(fAdapter);
 
-        fAdapter.addItem(getResources().getDrawable(R.drawable.ok),"NO", "NO");
+
+
+        fAdapter.addItem(getResources().getDrawable(R.drawable.ok), "NO", "NO");
 
     }
 

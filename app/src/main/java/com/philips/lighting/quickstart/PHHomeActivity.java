@@ -55,7 +55,7 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
         
         // Gets an instance of the Hue SDK.
         phHueSDK = PHHueSDK.create();
-        
+
         // Set the Device Name (name of your app). This will be stored in your bridge whitelist entry.
         phHueSDK.setAppName("QuickStartApp");
         phHueSDK.setDeviceName(android.os.Build.MODEL);
@@ -73,6 +73,8 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
         prefs = HueSharedPreferences.getInstance(getApplicationContext());
         String lastIpAddress   = prefs.getLastConnectedIPAddress();
         String lastUsername    = prefs.getUsername();
+
+        Log.i(TAG, "username is :!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + prefs.getUsername());
 
 
         // Automatically try to connect to the last connected IP Address.  For multiple bridge support a different implementation is required.
