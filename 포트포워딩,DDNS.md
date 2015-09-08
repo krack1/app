@@ -28,5 +28,5 @@
   
 ![connect !](공유기접속관리.png)  
 
-접속방법은 xxxx.iptime.org:<port number>
+접속방법은 xxxx.iptime.org:(port number)
   
