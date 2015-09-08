@@ -82,6 +82,7 @@ public class led_display extends Activity {
 
         prefs_led_state = getSharedPreferences("ledstate", MODE_PRIVATE);
         SharedPreferences.Editor ed = prefs_led_state.edit();
+        ed.clear();
         for (PHLight light : myArrayData) {
 
             ed.putString("id_" + light.getIdentifier(), light.getIdentifier());

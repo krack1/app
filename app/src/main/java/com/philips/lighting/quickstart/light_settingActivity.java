@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.philips.lighting.data.HueSharedPreferences;
 import com.philips.lighting.hue.sdk.PHHueSDK;
+import com.philips.lighting.hue.sdk.connection.impl.PHHueHttpConnection;
 
 
 public class light_settingActivity extends Activity {
@@ -18,6 +19,7 @@ public class light_settingActivity extends Activity {
     private ListView fListView = null;
     public LedListAdapter fAdapter;
     public HueSharedPreferences prefs;
+    public PHHueHttpConnection conn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,10 @@ public class light_settingActivity extends Activity {
         fListView = (ListView) findViewById(R.id.fList);
         fAdapter = new LedListAdapter(this);
         fListView.setAdapter(fAdapter);
+        prefs = HueSharedPreferences.getInstance(getApplicationContext());
 
+
+        conn.getData("http://" + prefs.getLastConnectedIPAddress() + "/api/" + prefs.getUsername()+"/ligths/new");
 
 
         fAdapter.addItem(getResources().getDrawable(R.drawable.ok), "NO", "NO");

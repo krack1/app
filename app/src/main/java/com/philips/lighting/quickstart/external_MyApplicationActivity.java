@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 
+import com.philips.lighting.data.HueSharedPreferences;
 import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.utilities.impl.Color;
 import com.philips.lighting.model.PHBridgeResource;
@@ -39,6 +40,7 @@ public class external_MyApplicationActivity extends Activity {
     public boolean on;
     public int m_red, m_green, m_blue;
     public SharedPreferences prefs_led_state;
+    private HueSharedPreferences prefs;
 
     SeekBar seekHue;
     SeekBar seekSat;
@@ -221,16 +223,18 @@ public class external_MyApplicationActivity extends Activity {
 
         // To validate your lightstate is valid (before sending to the bridge) you can use:
         // String validState = lightState.validateState();
+        prefs = HueSharedPreferences.getInstance(getApplicationContext());
+        Log.i("~~~~~~~~",prefs.getUsername().toString());
         if(b == 0) {
             on = false;
-            String url = "https://192.168.0.6:8000/hue_to_python/led_control/off/"+name;
+            String url = "https://hueconnect.iptime.org:8282/hue_to_python/led_control/off/"+name+"/"+prefs.getUsername();
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);
         }
         else {
             on = true;
-            String url = "https://192.168.0.6:8000/hue_to_python/led_control/putState/"+name+"/"+h+"/"+s+"/"+b+"/"+on;
+            String url = "https://hueconnect.iptime.org:8282/hue_to_python/led_control/putState/"+name+"/"+h+"/"+s+"/"+b+"/"+on+"/"+prefs.getUsername();
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);
